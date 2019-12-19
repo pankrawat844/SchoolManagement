@@ -1,4 +1,4 @@
-package com.app.schoolmanagement.auth
+package com.app.schoolmanagement.students.auth
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
