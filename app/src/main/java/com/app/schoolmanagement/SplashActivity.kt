@@ -1,10 +1,10 @@
 package com.app.schoolmanagement
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import com.app.schoolmanagement.students.auth.LoginActivity
+import androidx.appcompat.app.AppCompatActivity
+import com.app.schoolmanagement.students.auth.SchoolLoginActivity
 
 class SplashActivity : AppCompatActivity() {
 
@@ -12,10 +12,11 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         val handler=Handler()
-        handler.postAtTime(object :Runnable{
+        handler.postDelayed(object : Runnable {
             override fun run() {
-                Intent(this@SplashActivity,LoginActivity::class.java).apply {
+                Intent(this@SplashActivity, SchoolLoginActivity::class.java).apply {
                     startActivity(this)
+                    finish()
                 }
             }
 
