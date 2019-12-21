@@ -1,14 +1,14 @@
-package com.app.schoolmanagement.students.auth
+package com.app.schoolmanagement.students.auth.studentsignup
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.app.schoolmanagement.R
 
-class LoginActivity : AppCompatActivity() {
+class StudentSignupActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_student_signup)
         
     }
 }

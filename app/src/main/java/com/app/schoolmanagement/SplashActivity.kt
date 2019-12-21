@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
-import com.app.schoolmanagement.students.auth.SchoolLoginActivity
+import com.app.schoolmanagement.students.auth.schoollogin.SchoolLoginActivity
 
 class SplashActivity : AppCompatActivity() {
 

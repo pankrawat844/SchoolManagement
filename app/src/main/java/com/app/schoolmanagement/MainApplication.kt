@@ -1,9 +1,9 @@
 package com.app.schoolmanagement
 
 import android.app.Application
-import com.app.schoolmanagement.students.auth.SchoolLoginActivity
-import com.app.schoolmanagement.students.auth.SchoolLoginVIewModelFactory
-import com.app.schoolmanagement.students.auth.SchoolLoginViewModel
+import com.app.schoolmanagement.students.auth.schoollogin.SchoolLoginActivity
+import com.app.schoolmanagement.students.auth.schoollogin.SchoolLoginVIewModelFactory
+import com.app.schoolmanagement.students.auth.schoollogin.SchoolLoginViewModel
 import com.app.schoolmanagement.students.network.MyApi
 import com.app.schoolmanagement.students.repositories.SchoolLoginRepository
 import org.kodein.di.Kodein
@@ -17,10 +17,18 @@ class MainApplication : Application(), KodeinAware {
     override val kodein = Kodein.lazy {
         import(androidXModule(this@MainApplication))
         bind() from singleton { SchoolLoginActivity() }
-        bind() from singleton { SchoolLoginViewModel(instance()) }
+        bind() from singleton {
+            SchoolLoginViewModel(
+                instance()
+            )
+        }
         bind() from singleton { MyApi() }
         bind() from singleton { SchoolLoginRepository(instance()) }
-        bind() from singleton { SchoolLoginVIewModelFactory(instance()) }
+        bind() from singleton {
+            SchoolLoginVIewModelFactory(
+                instance()
+            )
+        }
     }
 
 

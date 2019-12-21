@@ -17,6 +17,16 @@ interface MyApi {
         @Field("password") password: String
     ): Response<SchoolLoginResponse>
 
+    @FormUrlEncoded
+    @POST("student_signup.php")
+    suspend fun student_signup(
+        @Field("school_id") school_id:String,
+        @Field("class_name") class_name:String,
+        @Field("section_name") section_name:String,
+        @Field("roll_no") roll_no:String,
+        @Field("password") password: String
+    )
+
     companion object{
         operator  fun invoke():MyApi
         {

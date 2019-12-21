@@ -11,8 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.app.schoolmanagement.students.auth.SchoolLoginActivity"></activity>
-        <activity android:name="com.app.schoolmanagement.students.auth.LoginActivity" />
+        <activity android:name="com.app.schoolmanagement.students.auth.schoollogin.SchoolLoginActivity"></activity>
+        <activity android:name="com.app.schoolmanagement.students.auth.studentsignup.StudentSignupActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

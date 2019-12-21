@@ -1,12 +1,14 @@
-package com.app.schoolmanagement.students.auth
+package com.app.schoolmanagement.students.auth.schoollogin
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProviders
 import com.app.schoolmanagement.R
 import com.app.schoolmanagement.databinding.ActivitySchoolLoginBinding
+import com.app.schoolmanagement.students.auth.studentsignup.StudentSignupActivity
+import com.app.schoolmanagement.students.room.entity.School
 import com.app.schoolmanagement.utils.hide
 import com.app.schoolmanagement.utils.show
 import com.app.schoolmanagement.utils.toast
@@ -16,7 +18,8 @@ import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
 import java.util.*
 
-class SchoolLoginActivity : AppCompatActivity(), SchoolLoginListener, KodeinAware {
+class SchoolLoginActivity : AppCompatActivity(),
+    SchoolLoginListener, KodeinAware {
     override val kodein by kodein()
 lateinit var viewModel: SchoolLoginViewModel
     var rotation: Float = 0.00f
@@ -48,10 +51,17 @@ lateinit var viewModel: SchoolLoginViewModel
         progress_bar.hide()
     }
 
-    override fun onSuccess(result: LiveData<String>) {
-        result.observe(this, androidx.lifecycle.Observer {
-            toast(it)
+    override fun onSuccess(result: School?) {
+
+            toast("School Login Successfully.")
+            Intent(this@SchoolLoginActivity,
+                StudentSignupActivity::class.java).also {
+                finish()
+                startActivity(it)
+            }
             progress_bar.hide()
-        })
+
     }
+
+
 }
