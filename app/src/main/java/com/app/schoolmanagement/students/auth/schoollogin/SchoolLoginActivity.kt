@@ -56,6 +56,7 @@ lateinit var viewModel: SchoolLoginViewModel
             toast("School Login Successfully.")
             Intent(this@SchoolLoginActivity,
                 StudentSignupActivity::class.java).also {
+                it.putExtra("school_id", result?.id.toString())
                 finish()
                 startActivity(it)
             }
