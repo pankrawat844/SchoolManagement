@@ -2,6 +2,7 @@ package com.app.schoolmanagement
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
@@ -9,10 +10,11 @@ import com.app.schoolmanagement.students.auth.schoollogin.SchoolLoginActivity
 import com.app.schoolmanagement.students.home.HomeActivity
 
 class SplashActivity : AppCompatActivity() {
-    val sharedPreferences = getSharedPreferences("app", Context.MODE_PRIVATE)
+    lateinit var sharedPreferences:SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+        sharedPreferences = getSharedPreferences("app", Context.MODE_PRIVATE)
         val handler=Handler()
         handler.postDelayed(object : Runnable {
             override fun run() {

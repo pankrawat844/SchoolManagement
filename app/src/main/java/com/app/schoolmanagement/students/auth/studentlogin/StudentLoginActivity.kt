@@ -2,6 +2,7 @@ package com.app.schoolmanagement.students.auth.studentlogin
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -21,10 +22,11 @@ import org.kodein.di.generic.instance
 class StudentLoginActivity : AppCompatActivity(), StudentLoginListener, KodeinAware {
     override val kodein by kodein()
     lateinit var viewModel: StudentLoginViewModel
-    val sharedPref = getSharedPreferences("app", Context.MODE_PRIVATE)
+    lateinit var sharedPref :SharedPreferences
     val factory: StudentLoginViewModelFactory by instance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        sharedPref = getSharedPreferences("app", Context.MODE_PRIVATE)
         val databind: ActivityStudentLoginBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_student_login)
         viewModel = ViewModelProviders.of(this, factory).get(StudentLoginViewModel::class.java)
@@ -39,13 +41,16 @@ class StudentLoginActivity : AppCompatActivity(), StudentLoginListener, KodeinAw
 
     override fun onSuccess(student: Student.Response) {
         progress_bar.hide()
-        sharedPref.edit().putBoolean("islogin", true)
-        sharedPref.edit().putString("name", student.name)
-        sharedPref.edit().putString("school_name", student.schoolName)
-        sharedPref.edit().putString("roll_no", student.rollNo)
-        sharedPref.edit().putString("gender", student.gender)
-        sharedPref.edit().putString("address", student.address)
-        sharedPref.edit().commit()
+
+        sharedPref.edit().also {
+           it.putBoolean("islogin", true)
+           it.putString("name", student.name)
+           it.putString("school_name", student.schoolName)
+           it.putString("roll_no", student.rollNo)
+           it.putString("gender", student.gender)
+           it.putString("address", student.address)
+            it.commit()
+        }
         Intent(this, HomeActivity::class.java).also {
             finish()
             startActivity(it)
