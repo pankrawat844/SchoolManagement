@@ -3,7 +3,7 @@
     <data>
         <variable
             name="data"
-            type="com.app.schoolmanagement.students.auth.schoollogin.SchoolLoginViewModel" />
+            type="com.app.schoolmanagement.students.auth.studentsignup.StudentSignupViewModel" />
     </data>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -48,7 +48,7 @@
                 android:background="#00000000"
                 android:fontFamily="@font/roboto_light"
                 android:hint="Class Name"
-                android:text="@={data.school_name}"
+                android:text="@={data.class_name}"
                 android:inputType="text"
                 android:textColor="#000"
                 android:textColorHint="#d3d3d3" />
@@ -67,7 +67,7 @@
                 android:background="#00000000"
                 android:fontFamily="@font/roboto_light"
                 android:hint="Section Name"
-                android:text="@={data.school_name}"
+                android:text="@={data.section_name}"
                 android:inputType="text"
                 android:textColor="#000"
                 android:textColorHint="#d3d3d3" />
@@ -85,7 +85,7 @@
                 android:background="#00000000"
                 android:fontFamily="@font/roboto_light"
                 android:hint="Roll Number"
-                android:text="@={data.school_name}"
+                android:text="@={data.roll_no}"
                 android:inputType="text"
                 android:textColor="#000"
                 android:textColorHint="#d3d3d3" />
@@ -128,7 +128,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="32dp"
-                android:onClick="@{data::onLoginClick}">
+                android:onClick="@{data::onLoginSignup}">
 
                 <ImageView
                     android:layout_width="70dp"

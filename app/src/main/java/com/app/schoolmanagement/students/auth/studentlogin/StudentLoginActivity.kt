@@ -55,7 +55,7 @@ class StudentLoginActivity : AppCompatActivity(), StudentLoginListener, KodeinAw
             finish()
             startActivity(it)
         }
-        toast(student.name!!)
+//        toast(student.name!!)
     }
 
     override fun onFailure(msg: String) {

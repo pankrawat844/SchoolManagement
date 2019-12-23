@@ -6,9 +6,12 @@ import com.app.schoolmanagement.students.auth.schoollogin.SchoolLoginVIewModelFa
 import com.app.schoolmanagement.students.auth.schoollogin.SchoolLoginViewModel
 import com.app.schoolmanagement.students.auth.studentlogin.StudentLoginViewModel
 import com.app.schoolmanagement.students.auth.studentlogin.StudentLoginViewModelFactory
+import com.app.schoolmanagement.students.auth.studentsignup.StudentSignupViewModel
+import com.app.schoolmanagement.students.auth.studentsignup.StudentSignupViewModelFactory
 import com.app.schoolmanagement.students.network.MyApi
 import com.app.schoolmanagement.students.repositories.SchoolLoginRepository
 import com.app.schoolmanagement.students.repositories.StudentLoginRepository
+import com.app.schoolmanagement.students.repositories.StudentSignupRepository
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
@@ -31,6 +34,10 @@ class MainApplication : Application(), KodeinAware {
         bind() from singleton { StudentLoginRepository(instance()) }
         bind() from singleton { StudentLoginViewModelFactory(instance()) }
         bind() from singleton { StudentLoginViewModel(instance()) }
+
+        bind() from singleton { StudentSignupRepository(instance()) }
+        bind() from singleton { StudentSignupViewModelFactory(instance()) }
+        bind() from singleton { StudentSignupViewModel(instance()) }
     }
 
 
