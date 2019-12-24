@@ -31,7 +31,7 @@ class SchoolLoginViewModel(val schoolLoginRepository: SchoolLoginRepository) : V
                 schoolLoginListener?.onSuccess(it)
                 return@launch
             }
-            schoolLoginListener?.onFailure("Some Went Wrong,")
+            schoolLoginListener?.onFailure(result?.message!!)
         }catch (e:ApiException) {
             schoolLoginListener?.onFailure(e.message!!)
         }

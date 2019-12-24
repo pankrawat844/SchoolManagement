@@ -18,6 +18,7 @@ class StudentSignupViewModel(val studentSignupRepository: StudentSignupRepositor
     var studentLoginListener: StudentLoginListener? = null
 
     fun onLoginSignup(view: View) {
+        studentLoginListener?.onStarted()
         if (school_id.isNullOrEmpty()) {
             studentLoginListener?.onFailure("School Id Not Empty.")
             return

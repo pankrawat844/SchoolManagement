@@ -52,6 +52,10 @@ class StudentLoginActivity : AppCompatActivity(), StudentLoginListener, KodeinAw
             it.commit()
         }
         Intent(this, HomeActivity::class.java).also {
+            it.flags=Intent.FLAG_ACTIVITY_CLEAR_TOP
+            it.flags=Intent.FLAG_ACTIVITY_CLEAR_TASK
+            it.flags=Intent.FLAG_ACTIVITY_NEW_TASK
+
             finish()
             startActivity(it)
         }

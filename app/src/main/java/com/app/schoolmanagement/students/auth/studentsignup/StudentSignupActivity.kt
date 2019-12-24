@@ -15,6 +15,7 @@ import com.app.schoolmanagement.students.home.HomeActivity
 import com.app.schoolmanagement.students.network.response.Student
 import com.app.schoolmanagement.utils.hide
 import com.app.schoolmanagement.utils.show
+import com.app.schoolmanagement.utils.toast
 import kotlinx.android.synthetic.main.activity_student_signup.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
@@ -67,5 +68,6 @@ class StudentSignupActivity : AppCompatActivity(), KodeinAware, StudentLoginList
 
     override fun onFailure(msg: String) {
         progress_bar.hide()
+        toast(msg)
     }
 }
