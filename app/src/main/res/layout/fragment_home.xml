@@ -1,22 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f8f8f8"
-   >
+    android:background="#f8f8f8">
 
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/splash" />
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logo"
+        android:layout_centerHorizontal="true"
+        android:text="" />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/user_name"
+        android:layout_marginTop="30dp"
+
         android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="60dp"
             android:orientation="vertical">
 
 
@@ -30,7 +43,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="20dp"
                     android:orientation="horizontal">
 
 
@@ -45,7 +58,8 @@
                             android:layout_height="50dp"
                             android:layout_gravity="center"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/home_work" />
+                            android:src="@drawable/homework"
+                            android:tint="@color/active_color" />
 
 
                         <TextView
@@ -56,8 +70,10 @@
                             android:gravity="center"
                             android:fontFamily="@font/sf_pro_display_semibold"
                             android:text="Home Work"
-                            android:textColor="@color/txt_color"
-                            android:textSize="12sp" />
+                            android:textAllCaps="true"
+                            android:textColor="@color/active_color"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
                     <LinearLayout
@@ -70,14 +86,17 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_gravity="center"
+                            android:tint="@color/active_color"
                             android:src="@drawable/notification"/>
 
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/txt_color"
-                            android:textSize="12sp"
+                            android:textAllCaps="true"
+                            android:textColor="@color/active_color"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
                             android:text="Notification"
                             android:fontFamily="@font/sf_pro_display_semibold"
 
@@ -97,15 +116,19 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/home_work"/>
+                            android:src="@drawable/test"
+                            android:tint="@color/active_color" />
 
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/txt_color"
-                            android:textSize="12sp"
-                            android:text="Content"
+                            android:text="UpComing Tests"
+                            android:textAllCaps="true"
+                            android:textColor="@color/active_color"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+
                             android:fontFamily="@font/sf_pro_display_semibold"
 
                             android:gravity="center"
@@ -119,7 +142,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="20dp"
                     android:orientation="horizontal">
 
 
@@ -134,17 +157,19 @@
                             android:layout_height="50dp"
                             android:scaleType="centerCrop"
                             android:layout_gravity="center"
-                            android:src="@drawable/home_work"/>
+                            android:src="@drawable/result"
+                            android:tint="@color/active_color" />
 
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/txt_color"
-                            android:textSize="12sp"
-                            android:text="Ads"
+                            android:text="Results"
+                            android:textAllCaps="true"
+                            android:textColor="@color/active_color"
                             android:fontFamily="@font/sf_pro_display_semibold"
-
+                            android:textSize="14sp"
+                            android:textStyle="bold"
                             android:gravity="center"
                             android:layout_gravity="center"
                             android:layout_marginTop="3dp"/>
@@ -160,17 +185,19 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/home_work"/>
+                            android:src="@drawable/time_table"
+                            android:tint="@color/active_color" />
 
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/txt_color"
-                            android:textSize="12sp"
-                            android:text="Analytics"
+                            android:text="Time Table"
+                            android:textAllCaps="true"
+                            android:textColor="@color/active_color"
                             android:fontFamily="@font/sf_pro_display_semibold"
-
+                            android:textSize="14sp"
+                            android:textStyle="bold"
                             android:gravity="center"
                             android:layout_gravity="center"
                             android:layout_marginTop="3dp"/>
@@ -187,19 +214,217 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/home_work"/>
+                            android:src="@drawable/schoolbus"
+                            android:tint="@color/active_color" />
 
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/txt_color"
-                            android:textSize="12sp"
-                            android:text="Support"
+                            android:text="School Bus"
+                            android:textAllCaps="true"
+                            android:textColor="@color/active_color"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
                             android:fontFamily="@font/sf_pro_display_semibold"
                             android:gravity="center"
                             android:layout_gravity="center"
                             android:layout_marginTop="3dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/contact_us"
+                            android:tint="@color/active_color" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="3dp"
+                            android:fontFamily="@font/sf_pro_display_semibold"
+                            android:gravity="center"
+                            android:text="Contact Us"
+                            android:textAllCaps="true"
+                            android:textColor="@color/active_color"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/about_us"
+                            android:tint="@color/active_color" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="3dp"
+                            android:fontFamily="@font/sf_pro_display_semibold"
+                            android:gravity="center"
+                            android:text="About Us"
+                            android:textAllCaps="true"
+                            android:textColor="@color/active_color"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/feedback"
+                            android:tint="@color/active_color" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="3dp"
+                            android:fontFamily="@font/sf_pro_display_semibold"
+                            android:gravity="center"
+                            android:text="Feedback"
+                            android:textAllCaps="true"
+                            android:textColor="@color/active_color"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/complaint"
+                            android:tint="@color/active_color" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="3dp"
+                            android:fontFamily="@font/sf_pro_display_semibold"
+                            android:gravity="center"
+                            android:text="Complaints"
+                            android:textAllCaps="true"
+
+                            android:textColor="@color/active_color"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/priacy_policy"
+                            android:tint="@color/active_color" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="3dp"
+                            android:fontFamily="@font/sf_pro_display_semibold"
+                            android:gravity="center"
+                            android:text="Privacy Policy"
+                            android:textAllCaps="true"
+                            android:textColor="@color/active_color"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/attendance"
+                            android:tint="@color/active_color" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="3dp"
+                            android:fontFamily="@font/sf_pro_display_semibold"
+                            android:gravity="center"
+                            android:text="Attendance"
+                            android:textAllCaps="true"
+                            android:textColor="@color/active_color"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
