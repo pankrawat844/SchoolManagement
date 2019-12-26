@@ -1,12 +1,14 @@
 package com.app.schoolmanagement.students.repositories
 
+import androidx.lifecycle.MutableLiveData
 import com.app.schoolmanagement.students.network.MyApi
 import com.app.schoolmanagement.students.network.SafeApiRequest
 import com.app.schoolmanagement.students.network.response.Classes
 import com.app.schoolmanagement.students.network.response.Student
+import retrofit2.Call
 
 class StudentSignupRepository(val myApi: MyApi) : SafeApiRequest() {
-
+    private val data = MutableLiveData<List<Classes.Data>>()
     suspend fun getstudentLogin(
         school_id: String,
         class_name: String,
@@ -26,10 +28,16 @@ class StudentSignupRepository(val myApi: MyApi) : SafeApiRequest() {
         }
     }
 
-    suspend fun getClasses(
+    fun getClasses(
         school_id: String
-    ):Classes
+    ): Call<Classes>
     {
-        return apiRequest { myApi.get_classes(school_id) }
+        return myApi.get_classes(school_id)
+    }
+
+    suspend fun getSection(
+        class_name: String
+    ): Call<Classes> {
+        return myApi.get_Section(class_name)
     }
 }

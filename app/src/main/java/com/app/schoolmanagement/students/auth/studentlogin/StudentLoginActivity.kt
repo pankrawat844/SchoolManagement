@@ -71,4 +71,8 @@ class StudentLoginActivity : AppCompatActivity(), StudentLoginListener, KodeinAw
     override fun onClassSuccess(classes: Classes) {
 
     }
+
+    override fun onSectionSuccess(classes: Classes) {
+
+    }
 }

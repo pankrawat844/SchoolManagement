@@ -8,5 +8,5 @@ interface StudentLoginListener {
     fun onSuccess(student: Student.Response)
     fun onFailure(msg: String)
     fun onClassSuccess(classes: Classes)
-
+    fun onSectionSuccess(classes: Classes)
 }

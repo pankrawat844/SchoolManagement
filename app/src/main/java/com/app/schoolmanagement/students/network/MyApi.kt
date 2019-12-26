@@ -7,9 +7,10 @@ import com.app.schoolmanagement.utils.Constants
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.*
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
+import retrofit2.http.POST
 
 interface MyApi {
     @FormUrlEncoded
@@ -39,14 +40,17 @@ interface MyApi {
 
     @FormUrlEncoded
     @POST("class_list.php")
-    fun get_classes(@Field("school_id") school_id:String):Response<Classes>
+    fun get_classes(@Field("school_id") school_id: String): Call<Classes>
+
+    @FormUrlEncoded
+    @POST("section_list.php")
+    fun get_Section(@Field("class_name") class_name: String): Call<Classes>
     companion object{
         operator  fun invoke():MyApi
         {
             return Retrofit
                 .Builder()
                 .baseUrl(Constants.base_url)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(MyApi::class.java)

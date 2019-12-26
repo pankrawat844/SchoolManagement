@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -47,10 +49,28 @@ class StudentSignupActivity : AppCompatActivity(), KodeinAware, StudentLoginList
                 startActivity(it)
             }
         }
-        CoroutineScope(Dispatchers.Main).launch {
+        CoroutineScope(Dispatchers.IO).launch {
             viewModel?.getClasses()
 
         }
+        class_name.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    viewModel?.getSection(parent?.getItemAtPosition(position).toString())!!
+                }
+            }
+
+        }
+
     }
 
     override fun onStarted() {
@@ -85,6 +105,28 @@ class StudentSignupActivity : AppCompatActivity(), KodeinAware, StudentLoginList
     }
 
     override fun onClassSuccess(classes: Classes) {
-        class_name.adapter=ArrayAdapter(this,android.R.layout.simple_spinner_item,classes.response!!)
+        class_name.adapter =
+            ArrayAdapter(this, android.R.layout.simple_spinner_item, classes.response!!.toItem())
+    }
+
+    override fun onSectionSuccess(classes: Classes) {
+        section_name.adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_item,
+            classes.response!!.toSectinItem()
+        )
+
+    }
+
+    private fun List<Classes.Data>.toItem(): List<String> {
+        return this.map {
+            it.className!!
+        }
+    }
+
+    private fun List<Classes.Data>.toSectinItem(): List<String> {
+        return this.map {
+            it.sectionName!!
+        }
     }
 }
