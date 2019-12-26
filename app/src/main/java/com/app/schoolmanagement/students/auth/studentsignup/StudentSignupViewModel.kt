@@ -53,6 +53,7 @@ class StudentSignupViewModel(val studentSignupRepository: StudentSignupRepositor
                     roll_no!!,
                     password!!
                 )
+
                 response.response.let {
                     studentLoginListener?.onSuccess(it!!)
                     return@launch
@@ -65,4 +66,13 @@ class StudentSignupViewModel(val studentSignupRepository: StudentSignupRepositor
         }
     }
 
+    public suspend fun getClasses() {
+        CoroutineScope(Dispatchers.Main).launch {
+            val data = studentSignupRepository.getClasses(school_id!!)
+            data.let {
+                studentLoginListener?.onClassSuccess(it)
+                return@launch
+            }
+        }
+    }
 }

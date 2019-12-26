@@ -1,14 +1,15 @@
 package com.app.schoolmanagement.students.network
 
+import com.app.schoolmanagement.students.network.response.Classes
 import com.app.schoolmanagement.students.network.response.SchoolLoginResponse
 import com.app.schoolmanagement.students.network.response.Student
 import com.app.schoolmanagement.utils.Constants
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface MyApi {
     @FormUrlEncoded
@@ -35,12 +36,17 @@ interface MyApi {
         @Field("roll_no") roll_no:String,
         @Field("password") password: String
     ): Response<Student>
+
+    @FormUrlEncoded
+    @POST("class_list.php")
+    fun get_classes(@Field("school_id") school_id:String):Response<Classes>
     companion object{
         operator  fun invoke():MyApi
         {
             return Retrofit
                 .Builder()
                 .baseUrl(Constants.base_url)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(MyApi::class.java)

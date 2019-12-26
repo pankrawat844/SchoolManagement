@@ -34,7 +34,7 @@ lateinit var viewModel: SchoolLoginViewModel
         timer.scheduleAtFixedRate(object : TimerTask() {
             override fun run() {
                 logo.rotation = rotation
-                rotation += 1
+                rotation += 10
             }
 
         }, 1000, 1000)
@@ -61,7 +61,6 @@ lateinit var viewModel: SchoolLoginViewModel
                 startActivity(it)
             }
             progress_bar.hide()
-
     }
 
 

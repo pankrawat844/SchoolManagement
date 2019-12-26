@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
@@ -12,11 +13,15 @@ import com.app.schoolmanagement.databinding.ActivityStudentSignupBinding
 import com.app.schoolmanagement.students.auth.studentlogin.StudentLoginActivity
 import com.app.schoolmanagement.students.auth.studentlogin.StudentLoginListener
 import com.app.schoolmanagement.students.home.HomeActivity
+import com.app.schoolmanagement.students.network.response.Classes
 import com.app.schoolmanagement.students.network.response.Student
 import com.app.schoolmanagement.utils.hide
 import com.app.schoolmanagement.utils.show
 import com.app.schoolmanagement.utils.toast
 import kotlinx.android.synthetic.main.activity_student_signup.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
@@ -41,6 +46,10 @@ class StudentSignupActivity : AppCompatActivity(), KodeinAware, StudentLoginList
                 it.putExtra("school_id", intent.getStringExtra("school_id"))
                 startActivity(it)
             }
+        }
+        CoroutineScope(Dispatchers.Main).launch {
+            viewModel?.getClasses()
+
         }
     }
 
@@ -73,5 +82,9 @@ class StudentSignupActivity : AppCompatActivity(), KodeinAware, StudentLoginList
     override fun onFailure(msg: String) {
         progress_bar.hide()
         toast(msg)
+    }
+
+    override fun onClassSuccess(classes: Classes) {
+        class_name.adapter=ArrayAdapter(this,android.R.layout.simple_spinner_item,classes.response!!)
     }
 }

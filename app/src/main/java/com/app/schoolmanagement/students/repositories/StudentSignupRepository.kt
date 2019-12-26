@@ -2,6 +2,7 @@ package com.app.schoolmanagement.students.repositories
 
 import com.app.schoolmanagement.students.network.MyApi
 import com.app.schoolmanagement.students.network.SafeApiRequest
+import com.app.schoolmanagement.students.network.response.Classes
 import com.app.schoolmanagement.students.network.response.Student
 
 class StudentSignupRepository(val myApi: MyApi) : SafeApiRequest() {
@@ -23,5 +24,12 @@ class StudentSignupRepository(val myApi: MyApi) : SafeApiRequest() {
                 passoword
             )
         }
+    }
+
+    suspend fun getClasses(
+        school_id: String
+    ):Classes
+    {
+        return apiRequest { myApi.get_classes(school_id) }
     }
 }

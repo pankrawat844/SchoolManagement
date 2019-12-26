@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.app.schoolmanagement.R
 import com.app.schoolmanagement.databinding.ActivityStudentLoginBinding
 import com.app.schoolmanagement.students.home.HomeActivity
+import com.app.schoolmanagement.students.network.response.Classes
 import com.app.schoolmanagement.students.network.response.Student
 import com.app.schoolmanagement.utils.hide
 import com.app.schoolmanagement.utils.show
@@ -65,5 +66,9 @@ class StudentLoginActivity : AppCompatActivity(), StudentLoginListener, KodeinAw
     override fun onFailure(msg: String) {
         progress_bar.hide()
         toast(msg)
+    }
+
+    override fun onClassSuccess(classes: Classes) {
+
     }
 }
