@@ -4,6 +4,7 @@ import android.view.View
 import androidx.lifecycle.ViewModel
 import com.app.schoolmanagement.students.repositories.StudentLoginRepository
 import com.app.schoolmanagement.utils.ApiException
+import com.app.schoolmanagement.utils.NoInternetException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -38,6 +39,8 @@ class StudentLoginViewModel(val studentLoginRepository: StudentLoginRepository) 
                 }
                 studentLoginListener?.onFailure(response.message!!)
             } catch (e: ApiException) {
+                studentLoginListener?.onFailure(e.message!!)
+            } catch (e: NoInternetException) {
                 studentLoginListener?.onFailure(e.message!!)
             }
         }

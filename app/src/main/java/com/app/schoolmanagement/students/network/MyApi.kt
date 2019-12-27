@@ -4,6 +4,8 @@ import com.app.schoolmanagement.students.network.response.Classes
 import com.app.schoolmanagement.students.network.response.SchoolLoginResponse
 import com.app.schoolmanagement.students.network.response.Student
 import com.app.schoolmanagement.utils.Constants
+import com.app.schoolmanagement.utils.NetworkConnectionInterceptor
+import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -46,11 +48,17 @@ interface MyApi {
     @POST("section_list.php")
     fun get_Section(@Field("class_name") class_name: String): Call<Classes>
     companion object{
-        operator  fun invoke():MyApi
+        operator fun invoke(
+            networkConnectionInterceptor: NetworkConnectionInterceptor
+        ): MyApi
         {
+            val okHttpClient = OkHttpClient.Builder()
+                .addInterceptor(networkConnectionInterceptor)
+                .build()
             return Retrofit
                 .Builder()
                 .baseUrl(Constants.base_url)
+                .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(MyApi::class.java)
