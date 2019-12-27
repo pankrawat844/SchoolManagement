@@ -1,7 +1,9 @@
 package com.app.schoolmanagement.students.auth.schoollogin
 
+import android.content.Intent
 import android.view.View
 import androidx.lifecycle.ViewModel
+import com.app.schoolmanagement.admin.auth.AdminLoginActivity
 import com.app.schoolmanagement.students.repositories.SchoolLoginRepository
 import com.app.schoolmanagement.utils.ApiException
 import kotlinx.coroutines.CoroutineScope
@@ -38,4 +40,14 @@ class SchoolLoginViewModel(val schoolLoginRepository: SchoolLoginRepository) : V
         }
 
     }
+
+
+    fun onAdminLoginClick(view:View)
+    {
+       Intent(view.context,AdminLoginActivity::class.java).also {
+           view.context.startActivity(it)
+       }
+        }
+
+
 }

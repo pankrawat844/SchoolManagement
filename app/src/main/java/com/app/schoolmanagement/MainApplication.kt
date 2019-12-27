@@ -1,6 +1,10 @@
 package com.app.schoolmanagement
 
 import android.app.Application
+import com.app.schoolmanagement.admin.auth.AdminLoginViewModel
+import com.app.schoolmanagement.admin.auth.AdminLoginViewModelFactory
+import com.app.schoolmanagement.admin.network.AdminApi
+import com.app.schoolmanagement.admin.repositories.AdminLoginRepository
 import com.app.schoolmanagement.students.auth.schoollogin.SchoolLoginActivity
 import com.app.schoolmanagement.students.auth.schoollogin.SchoolLoginVIewModelFactory
 import com.app.schoolmanagement.students.auth.schoollogin.SchoolLoginViewModel
@@ -38,6 +42,11 @@ class MainApplication : Application(), KodeinAware {
         bind() from singleton { StudentSignupRepository(instance()) }
         bind() from singleton { StudentSignupViewModelFactory(instance()) }
         bind() from singleton { StudentSignupViewModel(instance()) }
+
+        bind() from singleton { AdminApi() }
+        bind() from singleton { AdminLoginRepository(instance()) }
+        bind() from singleton { AdminLoginViewModel(instance()) }
+        bind() from singleton { AdminLoginViewModelFactory(instance()) }
     }
 
 

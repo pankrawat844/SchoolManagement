@@ -106,13 +106,13 @@ class StudentSignupActivity : AppCompatActivity(), KodeinAware, StudentLoginList
 
     override fun onClassSuccess(classes: Classes) {
         class_name.adapter =
-            ArrayAdapter(this, android.R.layout.simple_spinner_item, classes.response!!.toItem())
+            ArrayAdapter(this, android.R.layout.simple_list_item_1, classes.response!!.toItem())
     }
 
     override fun onSectionSuccess(classes: Classes) {
         section_name.adapter = ArrayAdapter(
             this,
-            android.R.layout.simple_spinner_item,
+            android.R.layout.simple_list_item_1,
             classes.response!!.toSectinItem()
         )
 
