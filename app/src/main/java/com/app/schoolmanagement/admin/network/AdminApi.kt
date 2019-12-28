@@ -5,6 +5,7 @@ import com.app.schoolmanagement.utils.Constants
 import com.app.schoolmanagement.utils.NetworkConnectionInterceptor
 import okhttp3.OkHttpClient
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -39,7 +40,7 @@ interface AdminApi {
     fun admin_login(@Field("user_name") user_name:String,
                     @Field("password") password: String
     ): Call<AdminlLoginResponse>
-                    @Field("password") password:String):Response<AdminlLoginResponse>
+
 
     @FormUrlEncoded
     @POST("add_class.php")
