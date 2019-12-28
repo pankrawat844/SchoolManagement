@@ -6,6 +6,7 @@ import com.app.schoolmanagement.students.auth.studentlogin.StudentLoginListener
 import com.app.schoolmanagement.students.network.response.Classes
 import com.app.schoolmanagement.students.repositories.StudentSignupRepository
 import com.app.schoolmanagement.utils.ApiException
+import com.app.schoolmanagement.utils.NoInternetException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -65,6 +66,8 @@ class StudentSignupViewModel(val studentSignupRepository: StudentSignupRepositor
                 studentLoginListener?.onFailure(response.message!!)
             } catch (e: ApiException) {
                 studentLoginListener?.onFailure(e.message!!)
+            } catch (e: NoInternetException) {
+                studentLoginListener?.onFailure(e.message!!)
             }
 
         }
@@ -72,41 +75,57 @@ class StudentSignupViewModel(val studentSignupRepository: StudentSignupRepositor
 
     suspend fun getClasses() {
         CoroutineScope(Dispatchers.Main).launch {
-            studentSignupRepository.getClasses(school_id!!).enqueue(object : Callback<Classes> {
-                override fun onFailure(call: Call<Classes>, t: Throwable) {
-                    studentLoginListener?.onFailure(t.message!!)
-                }
+            try {
 
-                override fun onResponse(call: Call<Classes>, response: Response<Classes>) {
-                    if (response.isSuccessful) {
-                        response.body()?.let {
-                            studentLoginListener?.onClassSuccess(it)
-                            list = it
+                studentSignupRepository.getClasses(school_id!!).enqueue(object : Callback<Classes> {
+                    override fun onFailure(call: Call<Classes>, t: Throwable) {
+                        studentLoginListener?.onFailure(t.message!!)
+                    }
 
+                    override fun onResponse(call: Call<Classes>, response: Response<Classes>) {
+                        if (response.isSuccessful) {
+                            response.body()?.let {
+                                studentLoginListener?.onClassSuccess(it)
+                                list = it
+
+                            }
                         }
                     }
-                }
-            })
+                })
+            } catch (e: ApiException) {
+                studentLoginListener?.onFailure(e.message!!)
+            } catch (e: NoInternetException) {
+                studentLoginListener?.onFailure(e.message!!)
+            }
         }
+
     }
 
     suspend fun getSection(class_name: String) {
         CoroutineScope(Dispatchers.Main).launch {
-            studentSignupRepository.getSection(class_name).enqueue(object : Callback<Classes> {
-                override fun onFailure(call: Call<Classes>, t: Throwable) {
-                    studentLoginListener?.onFailure(t.message!!)
-                }
+            try {
 
-                override fun onResponse(call: Call<Classes>, response: Response<Classes>) {
-                    if (response.isSuccessful) {
-                        response.body()?.let {
-                            studentLoginListener?.onSectionSuccess(it)
-                            list = it
+                studentSignupRepository.getSection(class_name).enqueue(object : Callback<Classes> {
+                    override fun onFailure(call: Call<Classes>, t: Throwable) {
+                        studentLoginListener?.onFailure(t.message!!)
+                    }
 
+                    override fun onResponse(call: Call<Classes>, response: Response<Classes>) {
+                        if (response.isSuccessful) {
+                            response.body()?.let {
+                                studentLoginListener?.onSectionSuccess(it)
+                                list = it
+
+                            }
                         }
                     }
-                }
-            })
+                })
+            } catch (e: ApiException) {
+                studentLoginListener?.onFailure(e.message!!)
+
+            } catch (e: NoInternetException) {
+                studentLoginListener?.onFailure(e.message!!)
+            }
         }
     }
 }

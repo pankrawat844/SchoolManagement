@@ -45,6 +45,7 @@ class StudentLoginActivity : AppCompatActivity(), StudentLoginListener, KodeinAw
 
         sharedPref.edit().also {
            it.putBoolean("islogin", true)
+            it.putString("role", "student")
            it.putString("name", student.name)
            it.putString("school_name", student.schoolName)
            it.putString("roll_no", student.rollNo)

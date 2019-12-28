@@ -6,13 +6,14 @@ import androidx.lifecycle.ViewModel
 import com.app.schoolmanagement.admin.auth.AdminLoginActivity
 import com.app.schoolmanagement.students.repositories.SchoolLoginRepository
 import com.app.schoolmanagement.utils.ApiException
+import com.app.schoolmanagement.utils.NoInternetException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class SchoolLoginViewModel(val schoolLoginRepository: SchoolLoginRepository) : ViewModel()
 {
-    var school_name:String?=null
+    var school_name: String? = "test"
     var password:String?=null
     var schoolLoginListener: SchoolLoginListener?=null
 
@@ -33,8 +34,10 @@ class SchoolLoginViewModel(val schoolLoginRepository: SchoolLoginRepository) : V
                 schoolLoginListener?.onSuccess(it)
                 return@launch
             }
-            schoolLoginListener?.onFailure(result?.message!!)
+            schoolLoginListener?.onFailure(result.message!!)
         }catch (e:ApiException) {
+            schoolLoginListener?.onFailure(e.message!!)
+        } catch (e: NoInternetException) {
             schoolLoginListener?.onFailure(e.message!!)
         }
         }
