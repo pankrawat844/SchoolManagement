@@ -13,7 +13,7 @@ import com.app.schoolmanagement.students.auth.studentsignup.StudentSignupViewMod
 import com.app.schoolmanagement.students.auth.studentsignup.StudentSignupViewModelFactory
 import com.app.schoolmanagement.students.network.MyApi
 import com.app.schoolmanagement.students.repositories.SchoolLoginRepository
-import com.app.schoolmanagement.students.repositories.StudentLoginRepository
+import com.app.schoolmanagement.students.repositories.StudentRepository
 import com.app.schoolmanagement.students.repositories.StudentSignupRepository
 import com.app.schoolmanagement.utils.NetworkConnectionInterceptor
 import org.kodein.di.Kodein
@@ -37,7 +37,7 @@ class MainApplication : Application(), KodeinAware {
         bind() from singleton { MyApi(instance()) }
         bind() from singleton { SchoolLoginRepository(instance()) }
         bind() from singleton { SchoolLoginVIewModelFactory(instance()) }
-        bind() from singleton { StudentLoginRepository(instance()) }
+        bind() from singleton { StudentRepository(instance()) }
         bind() from singleton { StudentLoginViewModelFactory(instance()) }
         bind() from singleton { StudentLoginViewModel(instance()) }
 

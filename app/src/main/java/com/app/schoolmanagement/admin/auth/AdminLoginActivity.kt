@@ -18,16 +18,26 @@ import kotlinx.android.synthetic.main.activity_admin_login.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
+import java.util.*
 
 class AdminLoginActivity : AppCompatActivity(),AdminLoginListener,KodeinAware {
     override val kodein by kodein()
     lateinit var viewModel: AdminLoginViewModel
     lateinit var sharedPref: SharedPreferences
+    var rotation: Float = 0.00f
 
     val factory:AdminLoginViewModelFactory by instance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPref = getSharedPreferences("app", Context.MODE_PRIVATE)
+        val timer = Timer()
+        timer.scheduleAtFixedRate(object : TimerTask() {
+            override fun run() {
+                logo.rotation = rotation
+                rotation += 10
+            }
+
+        }, 100, 100)
         val databind=DataBindingUtil.setContentView<ActivityAdminLoginBinding>(this,R.layout.activity_admin_login)
         viewModel=ViewModelProviders.of(this,factory).get(AdminLoginViewModel::class.java)
         databind.data=viewModel
@@ -49,16 +59,13 @@ class AdminLoginActivity : AppCompatActivity(),AdminLoginListener,KodeinAware {
         toast("Login Successfully.")
         sharedPref.edit().also {
             it.putBoolean("islogin", true)
-            it.putString("role", "student")
+            it.putString("role", "admin")
             it.putString("name", result?.username)
             it.putString("password", result?.password)
             it.commit()
         }
         Intent(this, AdminActivity::class.java).also {
-            it.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            it.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
-            it.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-
+            it.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK
             finish()
             startActivity(it)
         }

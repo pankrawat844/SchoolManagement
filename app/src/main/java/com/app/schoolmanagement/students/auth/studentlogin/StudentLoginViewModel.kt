@@ -2,14 +2,14 @@ package com.app.schoolmanagement.students.auth.studentlogin
 
 import android.view.View
 import androidx.lifecycle.ViewModel
-import com.app.schoolmanagement.students.repositories.StudentLoginRepository
+import com.app.schoolmanagement.students.repositories.StudentRepository
 import com.app.schoolmanagement.utils.ApiException
 import com.app.schoolmanagement.utils.NoInternetException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class StudentLoginViewModel(val studentLoginRepository: StudentLoginRepository) : ViewModel() {
+class StudentLoginViewModel(val studentRepository: StudentRepository) : ViewModel() {
     var school_id: String? = null
     var roll_no: String? = null
     var password: String? = null
@@ -32,7 +32,7 @@ class StudentLoginViewModel(val studentLoginRepository: StudentLoginRepository) 
             try {
 
                 val response =
-                    studentLoginRepository.getStudentDetails(school_id!!, roll_no!!, password!!)
+                    studentRepository.getStudentDetails(school_id!!, roll_no!!, password!!)
                 response.response.let {
                     studentLoginListener?.onSuccess(it!!)
                     return@launch

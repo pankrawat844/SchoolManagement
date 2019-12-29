@@ -6,11 +6,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.app.schoolmanagement.R
-import kotlinx.android.synthetic.main.nav_header_home.*
+import com.app.schoolmanagement.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
@@ -21,19 +21,25 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val root: FragmentHomeBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         homeViewModel =
             ViewModelProviders.of(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
-        sharedPreferences=context?.getSharedPreferences("app",MODE_PRIVATE)
-        if(sharedPreferences?.contains("student_name")!!)
-            textView.text="Welcome "+sharedPreferences?.getString("student_name","")
-        else
-            textView.text=sharedPreferences?.getString("roll_no","")
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            //            textView.text = it
-        })
+        homeViewModel.view1 = activity
+        root.viewmodel = homeViewModel
 
-        return root
+        sharedPreferences=context?.getSharedPreferences("app",MODE_PRIVATE)
+        homeViewModel.name = sharedPreferences?.getString("name", "")
+        homeViewModel.mobile = sharedPreferences?.getString("mobile", "")
+        homeViewModel.password = sharedPreferences?.getString("password", "")
+
+        if(sharedPreferences?.contains("student_name")!!)
+            root.userName.text = "Welcome " + sharedPreferences?.getString("name", "")
+        else
+            root.userName.text = "Welcome " + sharedPreferences?.getString("roll_no", "")
+
+
+        return root.root
     }
 
 }

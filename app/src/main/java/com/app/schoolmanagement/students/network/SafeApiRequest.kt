@@ -7,21 +7,17 @@ import retrofit2.Response
 
 abstract class SafeApiRequest {
 
-    suspend fun <T:Any> apiRequest(call:suspend ()->Response<T>):T
-    {
-        val resposne =call.invoke()
-        if(resposne.isSuccessful)
-        {
+    suspend fun <T : Any> apiRequest(call: suspend () -> Response<T>): T {
+        val resposne = call.invoke()
+        if (resposne.isSuccessful) {
             return resposne.body()!!
-        }else
-        {
-            val error=resposne.errorBody()?.string()
-            val errormsg=StringBuilder()
+        } else {
+            val error = resposne.errorBody()?.string()
+            val errormsg = StringBuilder()
             error.let {
-                try{
-                errormsg.append(JSONObject(it!!).getString("message"))
-                }catch (e:JSONException)
-                {
+                try {
+                    errormsg.append(JSONObject(it!!).getString("message"))
+                } catch (e: JSONException) {
                     e.printStackTrace()
                     errormsg.append("\n")
                 }

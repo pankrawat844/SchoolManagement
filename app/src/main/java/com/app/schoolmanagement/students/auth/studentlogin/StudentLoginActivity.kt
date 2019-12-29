@@ -19,15 +19,25 @@ import kotlinx.android.synthetic.main.activity_student_login.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
+import java.util.*
 
 class StudentLoginActivity : AppCompatActivity(), StudentLoginListener, KodeinAware {
     override val kodein by kodein()
     lateinit var viewModel: StudentLoginViewModel
     lateinit var sharedPref :SharedPreferences
+    var rotation: Float = 0.00f
     val factory: StudentLoginViewModelFactory by instance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPref = getSharedPreferences("app", Context.MODE_PRIVATE)
+        val timer = Timer()
+        timer.scheduleAtFixedRate(object : TimerTask() {
+            override fun run() {
+                logo.rotation = rotation
+                rotation += 10
+            }
+
+        }, 100, 100)
         val databind: ActivityStudentLoginBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_student_login)
         viewModel = ViewModelProviders.of(this, factory).get(StudentLoginViewModel::class.java)
@@ -47,16 +57,15 @@ class StudentLoginActivity : AppCompatActivity(), StudentLoginListener, KodeinAw
            it.putBoolean("islogin", true)
             it.putString("role", "student")
            it.putString("name", student.name)
-           it.putString("school_name", student.schoolName)
+            it.putString("school_id", viewModel.school_id)
+            it.putString("school_name", student.schoolName)
            it.putString("roll_no", student.rollNo)
            it.putString("gender", student.gender)
            it.putString("address", student.address)
             it.commit()
         }
         Intent(this, HomeActivity::class.java).also {
-            it.flags=Intent.FLAG_ACTIVITY_CLEAR_TOP
-            it.flags=Intent.FLAG_ACTIVITY_CLEAR_TASK
-            it.flags=Intent.FLAG_ACTIVITY_NEW_TASK
+            it.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK
 
             finish()
             startActivity(it)

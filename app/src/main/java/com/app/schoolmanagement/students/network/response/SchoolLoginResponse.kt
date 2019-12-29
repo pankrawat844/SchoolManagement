@@ -15,7 +15,7 @@ data class SchoolLoginResponse(
     data class Response(
         @SerializedName("id")
         val id: String? = null,
-        @SerializedName(    "logo")
+        @SerializedName("logo")
         val logo: String? = null,
         @SerializedName("name")
         val name: String? = null,

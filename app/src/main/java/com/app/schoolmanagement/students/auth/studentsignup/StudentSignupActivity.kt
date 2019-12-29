@@ -27,17 +27,27 @@ import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
+import java.util.*
 
 class StudentSignupActivity : AppCompatActivity(), KodeinAware, StudentLoginListener {
     override val kodein by kodein()
     var viewModel: StudentSignupViewModel? = null
     lateinit var sharedPref: SharedPreferences
+    var rotation: Float = 0.00f
     val factory: StudentSignupViewModelFactory by instance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPref = getSharedPreferences("app", Context.MODE_PRIVATE)
         val databind: ActivityStudentSignupBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_student_signup)
+        val timer = Timer()
+        timer.scheduleAtFixedRate(object : TimerTask() {
+            override fun run() {
+                logo.rotation = rotation
+                rotation += 10
+            }
+
+        }, 100, 100)
         viewModel = ViewModelProviders.of(this, factory).get(StudentSignupViewModel::class.java)
         viewModel?.school_id = intent.getStringExtra("school_id")
         databind.data = viewModel!!
@@ -64,6 +74,8 @@ class StudentSignupActivity : AppCompatActivity(), KodeinAware, StudentLoginList
                 position: Int,
                 id: Long
             ) {
+                viewModel?.class_name = parent?.getItemAtPosition(position).toString()
+
                 CoroutineScope(Dispatchers.IO).launch {
                     viewModel?.getSection(parent?.getItemAtPosition(position).toString())!!
                 }
@@ -71,6 +83,24 @@ class StudentSignupActivity : AppCompatActivity(), KodeinAware, StudentLoginList
 
         }
 
+
+        section_name.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                viewModel?.section_name = parent?.getItemAtPosition(position).toString()
+
+
+            }
+
+        }
     }
 
     override fun onStarted() {
@@ -82,7 +112,9 @@ class StudentSignupActivity : AppCompatActivity(), KodeinAware, StudentLoginList
 
         sharedPref.edit().also {
             it.putBoolean("islogin", true)
+            it.putString("role", "student")
             it.putString("name", student.name)
+            it.putString("school_id", viewModel?.school_id)
             it.putString("school_name", student.schoolName)
             it.putString("roll_no", student.rollNo)
             it.putString("gender", student.gender)
@@ -90,9 +122,7 @@ class StudentSignupActivity : AppCompatActivity(), KodeinAware, StudentLoginList
             it.commit()
         }
         Intent(this, HomeActivity::class.java).also {
-            it.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            it.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
-            it.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            it.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK
 
             finish()
             startActivity(it)

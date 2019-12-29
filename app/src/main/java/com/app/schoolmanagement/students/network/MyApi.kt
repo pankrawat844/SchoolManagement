@@ -35,8 +35,8 @@ interface MyApi {
     @FormUrlEncoded
     @POST("student_login.php")
     suspend fun student_login(
-        @Field("school_id") school_id:String,
-        @Field("roll_no") roll_no:String,
+        @Field("school_id") school_id: String,
+        @Field("roll_no") roll_no: String,
         @Field("password") password: String
     ): Response<Student>
 
@@ -47,11 +47,21 @@ interface MyApi {
     @FormUrlEncoded
     @POST("section_list.php")
     fun get_Section(@Field("class_name") class_name: String): Call<Classes>
-    companion object{
+
+    @FormUrlEncoded
+    @POST("edit_profile.php")
+    fun edit_profile(
+        @Field("school_id") school_id: String,
+        @Field("class_id") class_id: String,
+        @Field("name") name: String,
+        @Field("mobile") mobile: String,
+        @Field("password") password: String
+    ): Response<String>
+
+    companion object {
         operator fun invoke(
             networkConnectionInterceptor: NetworkConnectionInterceptor
-        ): MyApi
-        {
+        ): MyApi {
             val okHttpClient = OkHttpClient.Builder()
                 .addInterceptor(networkConnectionInterceptor)
                 .build()
