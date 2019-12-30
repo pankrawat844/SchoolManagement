@@ -6,6 +6,7 @@ import com.app.schoolmanagement.students.network.response.Student
 import com.app.schoolmanagement.utils.Constants
 import com.app.schoolmanagement.utils.NetworkConnectionInterceptor
 import okhttp3.OkHttpClient
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -51,12 +52,11 @@ interface MyApi {
     @FormUrlEncoded
     @POST("edit_profile.php")
     fun edit_profile(
-        @Field("school_id") school_id: String,
-        @Field("class_id") class_id: String,
+        @Field("student_id") student_id: String,
         @Field("name") name: String,
         @Field("mobile") mobile: String,
         @Field("password") password: String
-    ): Response<String>
+    ): Call<ResponseBody>
 
     companion object {
         operator fun invoke(

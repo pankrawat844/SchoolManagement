@@ -32,6 +32,7 @@ class HomeFragment : Fragment() {
         homeViewModel.name = sharedPreferences?.getString("name", "")
         homeViewModel.mobile = sharedPreferences?.getString("mobile", "")
         homeViewModel.password = sharedPreferences?.getString("password", "")
+        homeViewModel.student_id = sharedPreferences?.getString("student_id", "")
 
         if(sharedPreferences?.contains("student_name")!!)
             root.userName.text = "Welcome " + sharedPreferences?.getString("name", "")
