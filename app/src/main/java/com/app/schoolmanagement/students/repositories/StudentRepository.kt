@@ -9,7 +9,7 @@ class StudentRepository(val api: MyApi) : SafeApiRequest() {
         return apiRequest { api.student_login(school_id, roll_no, password) }
     }
 
-    suspend fun edit_profile(name: String, mobile: String, password: String) {
+    suspend fun edit_profile(name: String, mobile: String, password: String,student_id:String) {
 
     }
 }

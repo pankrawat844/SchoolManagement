@@ -45,7 +45,7 @@ interface AdminApi {
     @FormUrlEncoded
     @POST("add_class.php")
     fun add_class(@Field("school_id") school_id:String,
-                    @Field("class_name") class_name:String,
+                        @Field("class_name") class_name:String,
                     @Field("section_name") section_name:String,
                     @Field("total_student") tottal_student:String):Response<String>
 }
