@@ -2,10 +2,9 @@ package com.app.schoolmanagement.admin.auth
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.app.schoolmanagement.admin.repositories.AdminLoginRepository
-import com.app.schoolmanagement.students.repositories.SchoolLoginRepository
+import com.app.schoolmanagement.admin.repositories.AdminRepository
 
-class AdminLoginViewModelFactory(val adminLoginRepository: AdminLoginRepository) :
+class AdminLoginViewModelFactory(val adminLoginRepository: AdminRepository) :
     ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return AdminLoginViewModel(

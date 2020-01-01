@@ -1,4 +1,4 @@
-package com.app.schoolmanagement.students.home.ui.home
+package com.app.schoolmanagement.admin.home.ui.home
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModel
 import com.app.schoolmanagement.R
 import com.app.schoolmanagement.students.repositories.StudentRepository
 import com.app.schoolmanagement.utils.ApiException
-import com.app.schoolmanagement.utils.NoInternetException
 import kotlinx.android.synthetic.main.dialog_edit_profile.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -19,7 +18,7 @@ import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Call
 
-class HomeViewModel(val studentRepository: StudentRepository) : ViewModel() {
+class AdminHomeViewModel(val studentRepository: StudentRepository) : ViewModel() {
     var name: String? = null
     var mobile: String? = null
     var password: String? = null
@@ -41,6 +40,7 @@ class HomeViewModel(val studentRepository: StudentRepository) : ViewModel() {
             else {
                 CoroutineScope(Dispatchers.IO).launch {
                     try {
+
 
                         studentRepository.edit_profile(
                             dialogView.name.text.toString(),
@@ -104,9 +104,7 @@ class HomeViewModel(val studentRepository: StudentRepository) : ViewModel() {
 
                             })
                     } catch (e: ApiException) {
-                        homeFragmentListener?.onError(e.message!!)
-                    } catch (e: NoInternetException) {
-                        homeFragmentListener?.onError(e.message!!)
+
                     }
                 }
             }

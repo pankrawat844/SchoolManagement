@@ -3,7 +3,7 @@ package com.app.schoolmanagement.admin.auth
 import android.view.View
 import androidx.lifecycle.ViewModel
 import com.app.schoolmanagement.admin.network.response.AdminlLoginResponse
-import com.app.schoolmanagement.admin.repositories.AdminLoginRepository
+import com.app.schoolmanagement.admin.repositories.AdminRepository
 import com.app.schoolmanagement.utils.ApiException
 import com.app.schoolmanagement.utils.NoInternetException
 import kotlinx.coroutines.CoroutineScope
@@ -14,7 +14,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class AdminLoginViewModel(val adminLoginRepository: AdminLoginRepository) : ViewModel()
+class AdminLoginViewModel(val adminLoginRepository: AdminRepository) : ViewModel()
 {
     var user_name:String?=null
     var password:String?=null
