@@ -25,7 +25,7 @@ class HomeViewModel(val studentRepository: StudentRepository) : ViewModel() {
     var password: String? = null
     var view1: Activity? = null
     var student_id: String? = null
-    var homeFragmentListener: AdminHomeFragmentListener? = null
+    var homeFragmentListener: HomeFragmentListener? = null
     var dialog: AlertDialog? = null
     fun onedit_profile(view: View) {
 
@@ -39,7 +39,7 @@ class HomeViewModel(val studentRepository: StudentRepository) : ViewModel() {
             if (dialogView.name.toString().length == 0 || dialogView.mobile_no.toString().length == 0 || dialogView.password.toString().length == 0)
                 Toast.makeText(view1, "All fields are mandatory", Toast.LENGTH_SHORT).show()
             else {
-                CoroutineScope(Dispatchers.IO).launch {
+                CoroutineScope(Dispatchers.Main).launch {
                     try {
 
                         studentRepository.edit_profile(

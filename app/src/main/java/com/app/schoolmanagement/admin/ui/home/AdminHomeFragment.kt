@@ -4,15 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.app.schoolmanagement.R
 import com.app.schoolmanagement.admin.home.ui.home.AdminHomeViewModel
-import com.app.schoolmanagement.admin.home.ui.home.HomeFragmentListener
 import com.app.schoolmanagement.databinding.FragmentAdminHomeBinding
-import com.app.schoolmanagement.students.home.ui.home.AdminHomeFragmentListener
 import com.app.schoolmanagement.students.home.ui.home.AdminHomeViewModelFactory
 import com.app.schoolmanagement.utils.hide
 import com.app.schoolmanagement.utils.show
@@ -42,6 +39,7 @@ class AdminHomeFragment : Fragment(), KodeinAware, AdminHomeFragmentListener {
         databind.viewmodel = viewomodel
         databind.lifecycleOwner = this
         viewomodel.view1 = activity
+
         viewomodel.homeFragmentListener = this
 
 
@@ -63,8 +61,8 @@ class AdminHomeFragment : Fragment(), KodeinAware, AdminHomeFragmentListener {
     }
 
     override fun onError(msg: String) {
-        activity?.toast(msg)
         progress_bar.hide()
+        activity?.toast(msg)
     }
 
     override fun onStarted() {

@@ -1,11 +1,11 @@
 package com.app.schoolmanagement.admin.network
 
+import com.app.schoolmanagement.admin.network.response.AddClassResponse
 import com.app.schoolmanagement.admin.network.response.AdminlLoginResponse
 import com.app.schoolmanagement.utils.Constants
 import com.app.schoolmanagement.utils.NetworkConnectionInterceptor
 import okhttp3.OkHttpClient
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -45,7 +45,8 @@ interface AdminApi {
     @FormUrlEncoded
     @POST("add_class.php")
     fun add_class(@Field("school_id") school_id:String,
-                        @Field("class_name") class_name:String,
-                    @Field("section_name") section_name:String,
-                    @Field("total_student") tottal_student:String):Response<String>
+                  @Field("class_name") class_name:String,
+                  @Field("section_name") section_name:String,
+                  @Field("total_student") tottal_student: String
+    ): Call<AddClassResponse>
 }

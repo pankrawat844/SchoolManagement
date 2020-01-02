@@ -17,13 +17,13 @@ import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
 import java.util.*
 
-class HomeFragment : Fragment(), AdminHomeFragmentListener, KodeinAware {
+class HomeFragment : Fragment(), HomeFragmentListener, KodeinAware {
     override val kodein by kodein()
 
     private lateinit var homeViewModel: HomeViewModel
     private var sharedPreferences:SharedPreferences?=null
     lateinit var root: FragmentHomeBinding
-    private val factoryAdmin: AdminHomeViewModelFactory by instance()
+    private val factoryAdmin: HomeViewModelFactory by instance()
     var rotation: Float = 0.00f
 
     override fun onCreateView(
