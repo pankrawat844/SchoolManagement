@@ -25,7 +25,7 @@ class HomeViewModel(val studentRepository: StudentRepository) : ViewModel() {
     var password: String? = null
     var view1: Activity? = null
     var student_id: String? = null
-    var homeFragmentListener: HomeFragmentListener? = null
+    var homeFragmentListener: AdminHomeFragmentListener? = null
     var dialog: AlertDialog? = null
     fun onedit_profile(view: View) {
 

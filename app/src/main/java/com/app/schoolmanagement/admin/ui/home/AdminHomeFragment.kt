@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -11,16 +12,21 @@ import com.app.schoolmanagement.R
 import com.app.schoolmanagement.admin.home.ui.home.AdminHomeViewModel
 import com.app.schoolmanagement.admin.home.ui.home.HomeFragmentListener
 import com.app.schoolmanagement.databinding.FragmentAdminHomeBinding
-import com.app.schoolmanagement.students.home.ui.home.HomeViewModelFactory
+import com.app.schoolmanagement.students.home.ui.home.AdminHomeFragmentListener
+import com.app.schoolmanagement.students.home.ui.home.AdminHomeViewModelFactory
+import com.app.schoolmanagement.utils.hide
+import com.app.schoolmanagement.utils.show
+import com.app.schoolmanagement.utils.toast
+import kotlinx.android.synthetic.main.fragment_admin_home.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
 import java.util.*
 
-class AdminHomeFragment : Fragment(), KodeinAware, HomeFragmentListener {
+class AdminHomeFragment : Fragment(), KodeinAware, AdminHomeFragmentListener {
 
     override val kodein by kodein()
-    private val factory: HomeViewModelFactory by instance()
+    private val factoryAdmin: AdminHomeViewModelFactory by instance()
     private lateinit var homeViewModel: AdminHomeViewModel
     var rotation: Float = 0.00f
 
@@ -31,8 +37,8 @@ class AdminHomeFragment : Fragment(), KodeinAware, HomeFragmentListener {
     ): View? {
 
         val databind: FragmentAdminHomeBinding =
-            DataBindingUtil.inflate(R.layout.fragment_admin_home, container, false)
-        val viewomodel = ViewModelProviders.of(this, factory).get(AdminHomeViewModel::class.java)
+            DataBindingUtil.inflate(inflater,R.layout.fragment_admin_home, container, false)
+        val viewomodel = ViewModelProviders.of(this, factoryAdmin).get(AdminHomeViewModel::class.java)
         databind.viewmodel = viewomodel
         databind.lifecycleOwner = this
         viewomodel.view1 = activity
@@ -51,11 +57,17 @@ class AdminHomeFragment : Fragment(), KodeinAware, HomeFragmentListener {
     }
 
     override fun onDataChanged(name: String) {
+        progress_bar.hide()
+        activity?.toast(name)
 
     }
 
     override fun onError(msg: String) {
+        activity?.toast(msg)
+        progress_bar.hide()
     }
 
-
+    override fun onStarted() {
+        progress_bar.show()
+    }
 }

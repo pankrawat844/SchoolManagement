@@ -17,13 +17,13 @@ import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
 import java.util.*
 
-class HomeFragment : Fragment(), HomeFragmentListener, KodeinAware {
+class HomeFragment : Fragment(), AdminHomeFragmentListener, KodeinAware {
     override val kodein by kodein()
 
     private lateinit var homeViewModel: HomeViewModel
     private var sharedPreferences:SharedPreferences?=null
     lateinit var root: FragmentHomeBinding
-    private val factory: HomeViewModelFactory by instance()
+    private val factoryAdmin: AdminHomeViewModelFactory by instance()
     var rotation: Float = 0.00f
 
     override fun onCreateView(
@@ -34,7 +34,7 @@ class HomeFragment : Fragment(), HomeFragmentListener, KodeinAware {
         root =
             DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         homeViewModel =
-            ViewModelProviders.of(this, factory).get(HomeViewModel::class.java)
+            ViewModelProviders.of(this, factoryAdmin).get(HomeViewModel::class.java)
         homeViewModel.view1 = activity
         root.viewmodel = homeViewModel
 
@@ -65,6 +65,10 @@ class HomeFragment : Fragment(), HomeFragmentListener, KodeinAware {
 
     override fun onError(msg: String) {
         activity?.toast(msg)
+    }
+
+    override fun onStarted() {
+
     }
 
 

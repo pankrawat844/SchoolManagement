@@ -15,6 +15,7 @@ import com.app.schoolmanagement.utils.hide
 import com.app.schoolmanagement.utils.show
 import com.app.schoolmanagement.utils.toast
 import kotlinx.android.synthetic.main.activity_admin_login.*
+import kotlinx.android.synthetic.main.fragment_admin_home.logo
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
@@ -29,6 +30,8 @@ class AdminLoginActivity : AppCompatActivity(),AdminLoginListener,KodeinAware {
     val factory:AdminLoginViewModelFactory by instance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val databind=DataBindingUtil.setContentView<ActivityAdminLoginBinding>(this,R.layout.activity_admin_login)
+
         sharedPref = getSharedPreferences("app", Context.MODE_PRIVATE)
         val timer = Timer()
         timer.scheduleAtFixedRate(object : TimerTask() {
@@ -38,7 +41,6 @@ class AdminLoginActivity : AppCompatActivity(),AdminLoginListener,KodeinAware {
             }
 
         }, 100, 100)
-        val databind=DataBindingUtil.setContentView<ActivityAdminLoginBinding>(this,R.layout.activity_admin_login)
         viewModel=ViewModelProviders.of(this,factory).get(AdminLoginViewModel::class.java)
         databind.data=viewModel
         viewModel.adminLoginListener=this

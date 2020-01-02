@@ -3,6 +3,7 @@ package com.app.schoolmanagement
 import android.app.Application
 import com.app.schoolmanagement.admin.auth.AdminLoginViewModel
 import com.app.schoolmanagement.admin.auth.AdminLoginViewModelFactory
+import com.app.schoolmanagement.admin.home.ui.home.AdminHomeViewModel
 import com.app.schoolmanagement.admin.network.AdminApi
 import com.app.schoolmanagement.admin.repositories.AdminRepository
 import com.app.schoolmanagement.students.auth.schoollogin.SchoolLoginVIewModelFactory
@@ -12,7 +13,7 @@ import com.app.schoolmanagement.students.auth.studentlogin.StudentLoginViewModel
 import com.app.schoolmanagement.students.auth.studentsignup.StudentSignupViewModel
 import com.app.schoolmanagement.students.auth.studentsignup.StudentSignupViewModelFactory
 import com.app.schoolmanagement.students.home.ui.home.HomeViewModel
-import com.app.schoolmanagement.students.home.ui.home.HomeViewModelFactory
+import com.app.schoolmanagement.students.home.ui.home.AdminHomeViewModelFactory
 import com.app.schoolmanagement.students.network.MyApi
 import com.app.schoolmanagement.students.repositories.SchoolLoginRepository
 import com.app.schoolmanagement.students.repositories.StudentRepository
@@ -51,8 +52,8 @@ class MainApplication : Application(), KodeinAware {
         bind() from singleton { AdminRepository(instance()) }
         bind() from singleton { AdminLoginViewModel(instance()) }
         bind() from singleton { AdminLoginViewModelFactory(instance()) }
-        bind() from singleton { HomeViewModel(instance()) }
-        bind() from singleton { HomeViewModelFactory(instance()) }
+        bind() from singleton { AdminHomeViewModel(instance()) }
+        bind() from singleton { AdminHomeViewModelFactory(instance()) }
     }
 
 

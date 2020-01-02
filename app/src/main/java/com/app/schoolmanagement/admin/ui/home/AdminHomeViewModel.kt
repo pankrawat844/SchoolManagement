@@ -8,8 +8,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.app.schoolmanagement.R
+import com.app.schoolmanagement.admin.repositories.AdminRepository
+import com.app.schoolmanagement.students.home.ui.home.AdminHomeFragmentListener
 import com.app.schoolmanagement.students.repositories.StudentRepository
 import com.app.schoolmanagement.utils.ApiException
+import com.app.schoolmanagement.utils.NoInternetException
 import kotlinx.android.synthetic.main.dialog_edit_profile.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -18,15 +21,15 @@ import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Call
 
-class AdminHomeViewModel(val studentRepository: StudentRepository) : ViewModel() {
+class AdminHomeViewModel(val adminRepository: AdminRepository) : ViewModel() {
     var name: String? = null
     var mobile: String? = null
     var password: String? = null
     var view1: Activity? = null
     var student_id: String? = null
-    var homeFragmentListener: HomeFragmentListener? = null
+    var homeFragmentListener: AdminHomeFragmentListener? = null
     var dialog: AlertDialog? = null
-    fun onedit_profile(view: View) {
+    fun onaddclass(view: View) {
 
         val viewGroup: ViewGroup = view1?.findViewById(android.R.id.content)!!
         var dialogView = LayoutInflater.from(view.context)
@@ -35,77 +38,30 @@ class AdminHomeViewModel(val studentRepository: StudentRepository) : ViewModel()
         dialogView.mobile_no.setText(mobile)
         dialogView.password.setText(password)
         dialogView.buttonOk.setOnClickListener {
-            if (dialogView.name.toString().length == 0 || dialogView.mobile_no.toString().length == 0 || dialogView.password.toString().length == 0)
+            if (dialogView.name.toString().isEmpty() || dialogView.mobile_no.toString().isEmpty() || dialogView.password.toString().isEmpty())
                 Toast.makeText(view1, "All fields are mandatory", Toast.LENGTH_SHORT).show()
             else {
                 CoroutineScope(Dispatchers.IO).launch {
                     try {
 
 
-                        studentRepository.edit_profile(
-                            dialogView.name.text.toString(),
-                            dialogView.mobile_no.text.toString(),
-                            dialogView.password.text.toString(),
-                            student_id!!
+                      val response=  adminRepository.addclass(
+                            student_id!!,"","",""
                         )
-                            .enqueue(object : retrofit2.Callback<ResponseBody> {
-                                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                    val response_json=JSONObject(response)
+                        if(response_json.getBoolean("success")){
+                            homeFragmentListener?.onDataChanged(response_json.getString("message"))
+                        }else
+                        {
+                            homeFragmentListener?.onError(response_json.getString("message"))
 
-                                }
-
-                                override fun onResponse(
-                                    call: Call<ResponseBody>,
-                                    response: retrofit2.Response<ResponseBody>
-                                ) {
-                                    response.body().let {
-                                        val data = it?.string()
-                                        val jsonObject = JSONObject(data)
-                                        if (jsonObject.getBoolean("success")) {
-                                            Toast.makeText(
-                                                view1,
-                                                jsonObject.getString("message"),
-                                                Toast.LENGTH_SHORT
-                                            ).show()
-                                            homeFragmentListener?.onDataChanged(dialogView.name.text.toString())
-                                            val sharedPreferences =
-                                                view1?.getSharedPreferences("app", 0)
-                                            sharedPreferences?.edit().also {
-                                                it?.putString(
-                                                    "name",
-                                                    dialogView.name.text.toString()
-                                                )
-                                                it?.putString(
-                                                    "mobile",
-                                                    dialogView.mobile_no.text.toString()
-                                                )
-                                                it?.putString(
-                                                    "password",
-                                                    dialogView.password.text.toString()
-                                                )
-                                                it?.commit()
-                                            }
-                                            dialog?.dismiss()
-                                        } else
-                                            Toast.makeText(
-                                                view1,
-                                                jsonObject.getString("message"),
-                                                Toast.LENGTH_SHORT
-                                            ).show()
-                                        dialog?.dismiss()
-                                        return
-                                    }
-                                    Toast.makeText(
-                                        view1,
-                                        response.errorBody()?.string(),
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-
-                                }
-
-                            })
+                        }
                     } catch (e: ApiException) {
 
+                    }catch (e:NoInternetException){
+
                     }
+
                 }
             }
         }

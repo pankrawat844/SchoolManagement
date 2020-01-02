@@ -6,14 +6,23 @@
 
         <variable
             name="viewmodel"
-            type="com.app.schoolmanagement.students.home.ui.home.HomeViewModel" />
+            type="com.app.schoolmanagement.admin.home.ui.home.AdminHomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#fff">
-
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+          >
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
         <ImageView
             android:id="@+id/logo"
             android:layout_width="100dp"
@@ -45,25 +54,19 @@
             android:layout_height="15dp"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="10dp"
-            android:onClick="@{viewmodel::onedit_profile}"
             android:src="@drawable/edit_icon"
+            android:visibility="gone"
             android:tint="@color/active_color"
             app:layout_constraintBottom_toBottomOf="@+id/user_name"
             app:layout_constraintStart_toEndOf="@+id/user_name"
             app:layout_constraintTop_toTopOf="@+id/user_name" />
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_below="@+id/user_name"
-            android:layout_marginTop="0dp"
-            android:scrollbars="none"
-            app:layout_constraintTop_toBottomOf="@+id/user_name">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/user_name">
 
 
                 <LinearLayout
@@ -571,6 +574,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
                         android:orientation="horizontal">
 
 
@@ -578,6 +582,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:onClick="@{viewmodel.onaddclass}"
                             android:orientation="vertical">
 
                             <ImageView
@@ -669,9 +674,19 @@
 
 
             </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
 
-        </ScrollView>
-
-
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
