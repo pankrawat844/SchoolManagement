@@ -1,4 +1,4 @@
-package com.app.schoolmanagement.students.home.ui.home
+package com.app.schoolmanagement.admin.ui.home
 
 interface AdminHomeFragmentListener {
     fun onDataChanged(name: String)

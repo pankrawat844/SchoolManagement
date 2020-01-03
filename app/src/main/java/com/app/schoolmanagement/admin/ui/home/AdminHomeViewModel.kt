@@ -1,4 +1,4 @@
-package com.app.schoolmanagement.admin.ui.home
+package com.app.schoolmanagement.admin.home.ui.home
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -9,57 +9,89 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.app.schoolmanagement.R
+import com.app.schoolmanagement.admin.network.response.AddClassResponse
 import com.app.schoolmanagement.admin.repositories.AdminRepository
 import com.app.schoolmanagement.admin.ui.staff.StaffActivity
 import com.app.schoolmanagement.students.home.ui.home.AdminHomeFragmentListener
+import com.app.schoolmanagement.admin.ui.home.AdminHomeFragmentListener
 import com.app.schoolmanagement.utils.ApiException
 import com.app.schoolmanagement.utils.NoInternetException
-import kotlinx.android.synthetic.main.dialog_edit_profile.view.*
+import kotlinx.android.synthetic.main.dialog_add_class.view.*
+import kotlinx.android.synthetic.main.dialog_edit_profile.view.buttonOk
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import org.json.JSONObject
 
 class AdminHomeViewModel(private val adminRepository: AdminRepository) : ViewModel() {
     var name: String? = null
     var mobile: String? = null
     var password: String? = null
+class AdminHomeViewModel(val adminRepository: AdminRepository) : ViewModel() {
+    var class_name: String? = null
+    var section_name: String? = null
+    var total_student: String? = null
+
     var view1: Activity? = null
-    var student_id: String? = null
+    var school_id: String? = null
     var homeFragmentListener: AdminHomeFragmentListener? = null
     var dialog: AlertDialog? = null
     fun onddclass(view: View) {
 
         val viewGroup: ViewGroup = view1?.findViewById(android.R.id.content)!!
         var dialogView = LayoutInflater.from(view.context)
-            .inflate(R.layout.dialog_edit_profile, viewGroup, false)
-        dialogView.name.setText(name)
-        dialogView.mobile_no.setText(mobile)
-        dialogView.password.setText(password)
+            .inflate(R.layout.dialog_add_class, viewGroup, false)
+
         dialogView.buttonOk.setOnClickListener {
-            if (dialogView.name.toString().isEmpty() || dialogView.mobile_no.toString().isEmpty() || dialogView.password.toString().isEmpty())
+            if (dialogView.class_name.text.toString().isNullOrEmpty() || dialogView.section_name.text.toString().isNullOrEmpty() || dialogView.total_student.text.toString().isNullOrEmpty())
                 Toast.makeText(view1, "All fields are mandatory", Toast.LENGTH_SHORT).show()
             else {
-                CoroutineScope(Dispatchers.IO).launch {
-                    try {
-
-
-                      val response=  adminRepository.addclass(
-                            student_id!!,"","",""
-                        )
-                    val response_json=JSONObject(response)
-                        if(response_json.getBoolean("success")){
-                            homeFragmentListener?.onDataChanged(response_json.getString("message"))
-                        }else
-                        {
-                            homeFragmentListener?.onError(response_json.getString("message"))
+                CoroutineScope(Dispatchers.Main).launch {
+                    homeFragmentListener?.onStarted()
+                    val response = adminRepository.addclass(
+                        "1",
+                        dialogView.class_name.text.toString(),
+                        dialogView.section_name.text.toString(),
+                        dialogView.total_student.text.toString()
+                    ).enqueue(object : Callback<AddClassResponse> {
+                        override fun onFailure(call: Call<AddClassResponse>, t: Throwable) {
+                            homeFragmentListener?.onError(t.message!!)
+                            dialog?.dismiss()
 
                         }
-                    } catch (e: ApiException) {
 
-                    }catch (e:NoInternetException){
+                        override fun onResponse(
+                            call: Call<AddClassResponse>,
+                            response: Response<AddClassResponse>
+                        ) {
+                            try {
 
-                    }
+                                val res = response.body()
+                                if (res?.success!!) {
+                                    homeFragmentListener?.onDataChanged(res.message!!)
+                                    dialog?.dismiss()
+                                } else {
+                                    homeFragmentListener?.onError(res.message!!)
+                                    dialog?.dismiss()
+
+                                }
+                            } catch (e: ApiException) {
+                                homeFragmentListener?.onError(e.message!!)
+                                dialog?.dismiss()
+
+                            } catch (e: NoInternetException) {
+                                homeFragmentListener?.onError(e.message!!)
+                                dialog?.dismiss()
+
+                            }
+
+                        }
+
+                    })
+
 
                 }
             }

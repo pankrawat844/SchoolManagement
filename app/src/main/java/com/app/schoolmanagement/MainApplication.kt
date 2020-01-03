@@ -13,6 +13,8 @@ import com.app.schoolmanagement.students.auth.studentlogin.StudentLoginViewModel
 import com.app.schoolmanagement.students.auth.studentsignup.StudentSignupViewModel
 import com.app.schoolmanagement.students.auth.studentsignup.StudentSignupViewModelFactory
 import com.app.schoolmanagement.students.home.ui.home.AdminHomeViewModelFactory
+import com.app.schoolmanagement.students.home.ui.home.HomeViewModel
+import com.app.schoolmanagement.students.home.ui.home.HomeViewModelFactory
 import com.app.schoolmanagement.students.network.MyApi
 import com.app.schoolmanagement.students.repositories.SchoolLoginRepository
 import com.app.schoolmanagement.students.repositories.StudentRepository
@@ -46,6 +48,9 @@ class MainApplication : Application(), KodeinAware {
         bind() from singleton { StudentSignupRepository(instance()) }
         bind() from singleton { StudentSignupViewModelFactory(instance()) }
         bind() from singleton { StudentSignupViewModel(instance()) }
+
+        bind() from singleton { HomeViewModelFactory(instance()) }
+        bind() from singleton { HomeViewModel(instance()) }
 
         bind() from singleton { AdminApi(instance()) }
         bind() from singleton { AdminRepository(instance()) }
