@@ -1,4 +1,4 @@
-package com.app.schoolmanagement.admin.home.ui.home
+package com.app.schoolmanagement.admin.ui.home
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -12,7 +12,6 @@ import com.app.schoolmanagement.R
 import com.app.schoolmanagement.admin.network.response.AddClassResponse
 import com.app.schoolmanagement.admin.repositories.AdminRepository
 import com.app.schoolmanagement.admin.ui.staff.StaffActivity
-import com.app.schoolmanagement.students.home.ui.home.AdminHomeFragmentListener
 import com.app.schoolmanagement.admin.ui.home.AdminHomeFragmentListener
 import com.app.schoolmanagement.utils.ApiException
 import com.app.schoolmanagement.utils.NoInternetException
@@ -26,10 +25,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import org.json.JSONObject
 
-class AdminHomeViewModel(private val adminRepository: AdminRepository) : ViewModel() {
-    var name: String? = null
-    var mobile: String? = null
-    var password: String? = null
+
 class AdminHomeViewModel(val adminRepository: AdminRepository) : ViewModel() {
     var class_name: String? = null
     var section_name: String? = null

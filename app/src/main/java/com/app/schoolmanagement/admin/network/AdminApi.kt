@@ -2,7 +2,7 @@ package com.app.schoolmanagement.admin.network
 
 import com.app.schoolmanagement.admin.network.response.AddClassResponse
 import com.app.schoolmanagement.admin.network.response.AdminlLoginResponse
-import com.app.schoolmanagement.admin.network.response.Staff
+import com.app.schoolmanagement.admin.network.response.StaffList
 import com.app.schoolmanagement.utils.Constants
 import com.app.schoolmanagement.utils.NetworkConnectionInterceptor
 import okhttp3.OkHttpClient
@@ -49,5 +49,8 @@ interface AdminApi {
     fun add_class(@Field("school_id") school_id:String,
                         @Field("class_name") class_name:String,
                     @Field("section_name") section_name:String,
-                    @Field("total_student") tottal_student:String):Response<String>
+                    @Field("total_student") tottal_student:String):Call<AddClassResponse>
+
+    @GET("staff_list.php")
+    fun getStaffList():Call<StaffList>
 }

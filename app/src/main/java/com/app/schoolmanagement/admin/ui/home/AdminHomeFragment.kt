@@ -8,7 +8,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.app.schoolmanagement.R
-import com.app.schoolmanagement.admin.home.ui.home.AdminHomeViewModel
 import com.app.schoolmanagement.databinding.FragmentAdminHomeBinding
 import com.app.schoolmanagement.students.home.ui.home.AdminHomeViewModelFactory
 import com.app.schoolmanagement.utils.hide

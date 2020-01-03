@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.app.schoolmanagement.admin.ui.staff.StaffActivity" />
+            type="com.app.schoolmanagement.admin.ui.staff.StaffViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"

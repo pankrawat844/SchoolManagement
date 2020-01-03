@@ -3,7 +3,7 @@ package com.app.schoolmanagement.admin.repositories
 import com.app.schoolmanagement.admin.network.AdminApi
 import com.app.schoolmanagement.admin.network.response.AddClassResponse
 import com.app.schoolmanagement.admin.network.response.AdminlLoginResponse
-import com.app.schoolmanagement.admin.network.response.Staff
+import com.app.schoolmanagement.admin.network.response.StaffList
 import com.app.schoolmanagement.students.network.SafeApiRequest
 import retrofit2.Call
 
@@ -24,7 +24,7 @@ class AdminRepository(val myApi: AdminApi) : SafeApiRequest() {
         return myApi.add_class(school_id, class_name, section_name, total_student)
     }
 
-    suspend fun getStaff():Call<Staff>
+    suspend fun getStaff():Call<StaffList>
     {
         return myApi.getStaffList()
     }

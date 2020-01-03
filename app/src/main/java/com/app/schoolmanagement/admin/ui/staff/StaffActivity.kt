@@ -13,7 +13,7 @@ class StaffActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val databind:ActivityStaffBinding=DataBindingUtil.setContentView(this,R.layout.activity_staff)
         viewModel=ViewModelProviders.of(this).get(StaffViewModel::class.java)
-        databind.viewmodel=viewModel
+        databind.viewmodel=viewModel!!
 
     }
 }

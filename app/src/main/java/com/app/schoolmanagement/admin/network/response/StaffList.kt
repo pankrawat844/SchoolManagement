@@ -3,9 +3,9 @@ package com.app.schoolmanagement.admin.network.response
 
 import com.google.gson.annotations.SerializedName
 
-data class Staff(
+data class StaffList(
     @SerializedName("staff_list")
-    val staffList: List<Staff?>?
+    var staffList: List<Staff?>?=null
 ) {
     data class Staff(
         @SerializedName("class_name")
