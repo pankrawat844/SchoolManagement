@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.app.schoolmanagement.admin.ui.staff.StaffActivity" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".admin.ui.staff.StaffActivity">
+
+    <Button
+        android:id="@+id/add_staff"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/staff_btn"
+        android:text="Add Staff"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent=".45" />
+
+    <Button
+        android:id="@+id/add_teacher"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/staff_btn"
+        android:text="Add Teacher"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginRight="15dp"
+        android:padding="5dp"
+        app:layout_constraintWidth_percent=".45" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/staff_recyclerview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:listitem="@layout/item_staff"
+        tools:itemCount="10"
+        app:layout_constraintTop_toBottomOf="@+id/add_staff" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

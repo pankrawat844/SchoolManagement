@@ -3,7 +3,7 @@ package com.app.schoolmanagement
 import android.app.Application
 import com.app.schoolmanagement.admin.auth.AdminLoginViewModel
 import com.app.schoolmanagement.admin.auth.AdminLoginViewModelFactory
-import com.app.schoolmanagement.admin.home.ui.home.AdminHomeViewModel
+import com.app.schoolmanagement.admin.ui.home.AdminHomeViewModel
 import com.app.schoolmanagement.admin.network.AdminApi
 import com.app.schoolmanagement.admin.repositories.AdminRepository
 import com.app.schoolmanagement.students.auth.schoollogin.SchoolLoginVIewModelFactory
@@ -12,7 +12,6 @@ import com.app.schoolmanagement.students.auth.studentlogin.StudentLoginViewModel
 import com.app.schoolmanagement.students.auth.studentlogin.StudentLoginViewModelFactory
 import com.app.schoolmanagement.students.auth.studentsignup.StudentSignupViewModel
 import com.app.schoolmanagement.students.auth.studentsignup.StudentSignupViewModelFactory
-import com.app.schoolmanagement.students.home.ui.home.HomeViewModel
 import com.app.schoolmanagement.students.home.ui.home.AdminHomeViewModelFactory
 import com.app.schoolmanagement.students.network.MyApi
 import com.app.schoolmanagement.students.repositories.SchoolLoginRepository

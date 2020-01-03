@@ -1,6 +1,7 @@
 package com.app.schoolmanagement.admin.network
 
 import com.app.schoolmanagement.admin.network.response.AdminlLoginResponse
+import com.app.schoolmanagement.admin.network.response.Staff
 import com.app.schoolmanagement.utils.Constants
 import com.app.schoolmanagement.utils.NetworkConnectionInterceptor
 import okhttp3.OkHttpClient
@@ -11,6 +12,7 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface AdminApi {
@@ -47,5 +49,9 @@ interface AdminApi {
     fun add_class(@Field("school_id") school_id:String,
                         @Field("class_name") class_name:String,
                     @Field("section_name") section_name:String,
-                    @Field("total_student") tottal_student:String):Response<String>
+                    @Field("total_student") total_student:String):Response<String>
+
+
+@GET("staff_list.php")
+fun getStaffList():Call<Staff>
 }

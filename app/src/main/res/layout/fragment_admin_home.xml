@@ -6,7 +6,7 @@
 
         <variable
             name="viewmodel"
-            type="com.app.schoolmanagement.admin.home.ui.home.AdminHomeViewModel" />
+            type="com.app.schoolmanagement.admin.ui.home.AdminHomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -582,7 +582,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:onClick="@{viewmodel.onaddclass}"
+                            android:onClick="@{viewmodel::addStaff}"
                             android:orientation="vertical">
 
                             <ImageView
@@ -643,6 +643,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:onClick="@{viewmodel.addStaff}"
                             android:orientation="vertical">
 
                             <ImageView
@@ -651,7 +652,6 @@
                                 android:layout_gravity="center"
                                 android:src="@drawable/add_staff"
                                 android:tint="@color/active_color" />
-
 
                             <TextView
                                 android:layout_width="wrap_content"
