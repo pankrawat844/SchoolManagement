@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.app.schoolmanagement.R
 import com.app.schoolmanagement.admin.network.response.AddClassResponse
+import com.app.schoolmanagement.admin.network.response.Classes
 import com.app.schoolmanagement.admin.repositories.AdminRepository
 import com.app.schoolmanagement.admin.ui.staff.StaffActivity
 import com.app.schoolmanagement.admin.ui.home.AdminHomeFragmentListener
@@ -35,6 +36,8 @@ class AdminHomeViewModel(val adminRepository: AdminRepository) : ViewModel() {
     var school_id: String? = null
     var homeFragmentListener: AdminHomeFragmentListener? = null
     var dialog: AlertDialog? = null
+    var class_list:Classes?=null
+    var section_list:Classes?=null
     fun onddclass(view: View) {
 
         val viewGroup: ViewGroup = view1?.findViewById(android.R.id.content)!!
@@ -104,4 +107,9 @@ class AdminHomeViewModel(val adminRepository: AdminRepository) : ViewModel() {
             view.context.startActivity(it)
         }
     }
+
+
+
+
+
 }

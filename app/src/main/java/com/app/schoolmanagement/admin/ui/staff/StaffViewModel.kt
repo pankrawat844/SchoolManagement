@@ -1,14 +1,18 @@
 package com.app.schoolmanagement.admin.ui.staff
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.app.schoolmanagement.R
+import com.app.schoolmanagement.admin.network.response.Classes
 import com.app.schoolmanagement.admin.network.response.StaffList
 import com.app.schoolmanagement.admin.repositories.AdminRepository
+import com.app.schoolmanagement.utils.ApiException
+import com.app.schoolmanagement.utils.NoInternetException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -24,7 +28,7 @@ class StaffViewModel(val adminRepository: AdminRepository) : ViewModel() {
     var section_name: String? = null
     var id: String? = null
     var password: String? = null
-
+    var dialog:AlertDialog?=null
     var staffList = MutableLiveData<List<StaffList.Staff>>()
     fun getStaff(): MutableLiveData<List<StaffList.Staff>> {
         CoroutineScope(Dispatchers.Main).launch {
@@ -102,9 +106,66 @@ class StaffViewModel(val adminRepository: AdminRepository) : ViewModel() {
 //                }
 //            }
 //        }
-//        val builder: AlertDialog.Builder = AlertDialog.Builder(view.context)
-//        builder.setView(dialogView)
-//        dialog = builder.create()
-//        dialog?.show()
+        val builder: AlertDialog.Builder = AlertDialog.Builder(view.context)
+        builder.setView(dialogView)
+        dialog = builder.create()
+        dialog?.show()
+    }
+
+    fun getClasses() {
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+
+                adminRepository.getClasses("1").enqueue(object : Callback<Classes> {
+                    override fun onFailure(call: Call<Classes>, t: Throwable) {
+                        staffActivityListener?.onError(t.message!!)
+                    }
+
+                    override fun onResponse(call: Call<Classes>, response: Response<Classes>) {
+                        if (response.isSuccessful) {
+                            response.body()?.let {
+                                staffActivityListener?.onClassSuccess(it)
+
+                            }
+                        }
+                    }
+                })
+            } catch (e: ApiException) {
+                staffActivityListener?.onError(e.message!!)
+            } catch (e: NoInternetException) {
+                staffActivityListener?.onError(e.message!!)
+            }
+        }
+
+    }
+
+
+
+    suspend fun getSection(class_name: String) {
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+
+                adminRepository.getSection(class_name).enqueue(object : Callback<Classes> {
+                    override fun onFailure(call: Call<Classes>, t: Throwable) {
+                        staffActivityListener?.onError(t.message!!)
+                    }
+
+                    override fun onResponse(call: Call<Classes>, response: Response<Classes>) {
+                        if (response.isSuccessful) {
+                            response.body()?.let {
+                                staffActivityListener?.onSectionSuccess(it)
+
+
+                            }
+                        }
+                    }
+                })
+            } catch (e: ApiException) {
+                staffActivityListener?.onError(e.message!!)
+
+            } catch (e: NoInternetException) {
+                staffActivityListener?.onError(e.message!!)
+            }
+        }
     }
 }

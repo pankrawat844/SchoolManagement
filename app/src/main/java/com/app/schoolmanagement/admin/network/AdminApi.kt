@@ -2,6 +2,7 @@ package com.app.schoolmanagement.admin.network
 
 import com.app.schoolmanagement.admin.network.response.AddClassResponse
 import com.app.schoolmanagement.admin.network.response.AdminlLoginResponse
+import com.app.schoolmanagement.admin.network.response.Classes
 import com.app.schoolmanagement.admin.network.response.StaffList
 import com.app.schoolmanagement.utils.Constants
 import com.app.schoolmanagement.utils.NetworkConnectionInterceptor
@@ -53,4 +54,13 @@ interface AdminApi {
 
     @GET("staff_list.php")
     fun getStaffList():Call<StaffList>
+
+    @FormUrlEncoded
+    @POST("class_list.php")
+    fun get_classes(@Field("school_id") school_id: String): Call<Classes>
+
+    @FormUrlEncoded
+    @POST("section_list.php")
+    fun get_Section(@Field("class_name") class_name: String): Call<Classes>
+
 }

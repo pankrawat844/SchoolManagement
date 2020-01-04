@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.app.schoolmanagement.R
+import com.app.schoolmanagement.admin.network.response.Classes
 import com.app.schoolmanagement.databinding.FragmentAdminHomeBinding
 import com.app.schoolmanagement.utils.hide
 import com.app.schoolmanagement.utils.show
@@ -37,9 +38,7 @@ class AdminHomeFragment : Fragment(), KodeinAware, AdminHomeFragmentListener {
         databind.viewmodel = viewomodel
         databind.lifecycleOwner = this
         viewomodel.view1 = activity
-
         viewomodel.homeFragmentListener = this
-
 
         val timer = Timer()
         timer.scheduleAtFixedRate(object : TimerTask() {
@@ -66,4 +65,6 @@ class AdminHomeFragment : Fragment(), KodeinAware, AdminHomeFragmentListener {
     override fun onStarted() {
         progress_bar.show()
     }
+
+
 }

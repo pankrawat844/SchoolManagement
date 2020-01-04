@@ -3,8 +3,8 @@ import com.google.gson.annotations.SerializedName
 
 
 data class Classes(
-    @SerializedName("data")
-    val `data`: List<Data?>?=null
+    @SerializedName("response")
+    val response: List<Data?>?=null
 ) {
     data class Data(
         @SerializedName("class_id")
