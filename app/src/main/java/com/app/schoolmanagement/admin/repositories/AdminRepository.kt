@@ -14,7 +14,7 @@ class AdminRepository(val myApi: AdminApi) : SafeApiRequest() {
             return myApi.admin_login(school_name, pass)
         }
 
-    suspend fun addclass(
+    fun addclass(
         school_id: String,
         class_name: String,
         section_name: String,

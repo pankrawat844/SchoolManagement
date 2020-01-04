@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.app.schoolmanagement.admin.network.response.StaffList.Staff" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 <LinearLayout
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +33,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:textSize="18dp"
-        android:text="Name"/>
+        android:text="@{data.name}" />
 
         <TextView
             android:id="@+id/class_name"
@@ -34,7 +43,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginBottom="5dp"
             android:fontFamily="@font/maven_pro_regular"
-            android:text="12th"
+            android:text="@{data.className}"
             android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,3 +51,4 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
