@@ -2,6 +2,7 @@ package com.app.schoolmanagement.utils
 
 import android.view.View
 import android.widget.AdapterView
+import android.widget.CheckBox
 import android.widget.Spinner
 import androidx.databinding.BindingAdapter
 import com.app.schoolmanagement.students.auth.studentsignup.StudentSignupViewModel
@@ -28,6 +29,9 @@ class DataBindable {
 
             })
         }
+
+
+
     }
 }
 

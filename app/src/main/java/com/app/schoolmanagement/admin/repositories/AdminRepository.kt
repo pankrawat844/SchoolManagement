@@ -36,6 +36,21 @@ class AdminRepository(val myApi: AdminApi) : SafeApiRequest() {
     suspend fun getSection(
         class_name: String
     ): Call<Classes> {
-        return myApi.get_Section(class_name)
+        return myApi.getSection(class_name)
+    }
+
+    fun addstaff(
+        school_id: String,
+        class_name: String,
+        section_name: String,
+        userid: String,
+        password:String,
+        isinhcarge:Boolean
+    ): Call<AdminlLoginResponse> {
+        if(isinhcarge)
+        return myApi.addStaff(school_id, class_name, section_name, userid,password,1)
+        else
+            return myApi.addStaff(school_id, class_name, section_name, userid,password,0)
+
     }
 }

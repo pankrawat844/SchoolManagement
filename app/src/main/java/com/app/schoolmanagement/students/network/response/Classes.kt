@@ -1,5 +1,4 @@
 package com.app.schoolmanagement.students.network.response
-
 import com.google.gson.annotations.SerializedName
 
 

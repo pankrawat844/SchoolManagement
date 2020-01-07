@@ -61,6 +61,14 @@ interface AdminApi {
 
     @FormUrlEncoded
     @POST("section_list.php")
-    fun get_Section(@Field("class_name") class_name: String): Call<Classes>
+    fun getSection(@Field("class_name") class_name: String): Call<Classes>
 
+    @FormUrlEncoded
+        @POST("add_staff.php")
+    fun addStaff(@Field("school_id") school_id: String,
+                 @Field("class_name") class_name: String,
+                 @Field("section_name") section_name: String,
+                 @Field("userid") user_id: String,
+                 @Field("password") password: String,
+                 @Field("isIncharge") isIncharge:Int): Call<AdminlLoginResponse>
 }
