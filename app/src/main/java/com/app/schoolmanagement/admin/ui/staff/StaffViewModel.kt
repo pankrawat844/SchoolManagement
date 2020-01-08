@@ -2,15 +2,13 @@ package com.app.schoolmanagement.admin.ui.staff
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.view.LayoutInflater
+import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.app.schoolmanagement.R
-import com.app.schoolmanagement.admin.network.response.AdminlLoginResponse
 import com.app.schoolmanagement.admin.network.response.Classes
+import com.app.schoolmanagement.admin.network.response.StaffAddResponse
 import com.app.schoolmanagement.admin.network.response.StaffList
 import com.app.schoolmanagement.admin.repositories.AdminRepository
 import com.app.schoolmanagement.utils.ApiException
@@ -19,6 +17,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,19 +32,23 @@ class StaffViewModel(val adminRepository: AdminRepository) : ViewModel() {
     var selected_class:String?=null
     var selected_section:String?=null
     var staff_id:String?=null
-    var isinhcarge:Boolean?=null
+    var isinhcarge: Boolean? = false
+
     var staffList = MutableLiveData<List<StaffList.Staff>>()
     fun getStaff(): MutableLiveData<List<StaffList.Staff>> {
+        staffActivityListener?.onStarted()
         CoroutineScope(Dispatchers.Main).launch {
             async {
                 adminRepository.getStaff().enqueue(object : Callback<StaffList> {
                     override fun onFailure(call: Call<StaffList>, t: Throwable) {
-
+                        staffActivityListener?.onError(t.message!!)
                     }
 
                     override fun onResponse(call: Call<StaffList>, response: Response<StaffList>) {
                         val data = response.body()
                         staffList.value = (data?.staffList as List<StaffList.Staff>?)!!
+                        staffActivityListener?.onSuccess("")
+
                     }
 
                 })
@@ -68,27 +71,32 @@ class StaffViewModel(val adminRepository: AdminRepository) : ViewModel() {
                         staff_id!!,
                         password!!,
                        isinhcarge!!
-                    ).enqueue(object : Callback<AdminlLoginResponse> {
-                        override fun onFailure(call: Call<AdminlLoginResponse>, t: Throwable) {
+                   ).enqueue(object : Callback<StaffAddResponse> {
+                       override fun onFailure(call: Call<StaffAddResponse>, t: Throwable) {
                             staffActivityListener?.onError(t.message!!)
                             dialog?.dismiss()
 
                         }
 
                         override fun onResponse(
-                            call: Call<AdminlLoginResponse>,
-                            response: Response<AdminlLoginResponse>
+                            call: Call<StaffAddResponse>,
+                            response: Response<StaffAddResponse>
                         ) {
                             try {
-
+                                if (response.isSuccessful) {
                                 val res = response.body()
                                 if (res?.success!!) {
+                                    staffActivityListener?.onSuccess(res.message!!)
 //                                    staffActivityListener?.onDataChanged(res.message!!)
                                     dialog?.dismiss()
                                 } else {
                                     staffActivityListener?.onError(res.message!!)
                                     dialog?.dismiss()
 
+                                }
+                                } else {
+                                    val jsonobj = JSONObject(response.errorBody()?.string())
+                                    Log.e("TAG", "onResponse: " + jsonobj.toString())
                                 }
                             } catch (e: ApiException) {
                                 staffActivityListener?.onError(e.message!!)

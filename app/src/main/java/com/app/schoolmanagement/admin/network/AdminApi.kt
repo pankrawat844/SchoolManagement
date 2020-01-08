@@ -1,9 +1,6 @@
 package com.app.schoolmanagement.admin.network
 
-import com.app.schoolmanagement.admin.network.response.AddClassResponse
-import com.app.schoolmanagement.admin.network.response.AdminlLoginResponse
-import com.app.schoolmanagement.admin.network.response.Classes
-import com.app.schoolmanagement.admin.network.response.StaffList
+import com.app.schoolmanagement.admin.network.response.*
 import com.app.schoolmanagement.utils.Constants
 import com.app.schoolmanagement.utils.NetworkConnectionInterceptor
 import okhttp3.OkHttpClient
@@ -70,5 +67,6 @@ interface AdminApi {
                  @Field("section_name") section_name: String,
                  @Field("userid") user_id: String,
                  @Field("password") password: String,
-                 @Field("isIncharge") isIncharge:Int): Call<AdminlLoginResponse>
+                 @Field("isIncharge") isIncharge: Int
+    ): Call<StaffAddResponse>
 }

@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class StaffList(
     @SerializedName("staff_list")
-    var staffList: List<Staff?>?=null
+    val staffList: List<Staff?>?
 ) {
     data class Staff(
         @SerializedName("class_name")
@@ -18,9 +18,11 @@ data class StaffList(
         val isStaff: String?,
         @SerializedName("is_teacher")
         val isTeacher: String?,
-        @SerializedName("name")
-        val name: String?,
         @SerializedName("password")
-        val password: String?
+        val password: String?,
+        @SerializedName("section_name")
+        val sectionName: String?,
+        @SerializedName("userid")
+        val userid: String?
     )
 }

@@ -1,10 +1,7 @@
 package com.app.schoolmanagement.admin.repositories
 
 import com.app.schoolmanagement.admin.network.AdminApi
-import com.app.schoolmanagement.admin.network.response.AddClassResponse
-import com.app.schoolmanagement.admin.network.response.AdminlLoginResponse
-import com.app.schoolmanagement.admin.network.response.Classes
-import com.app.schoolmanagement.admin.network.response.StaffList
+import com.app.schoolmanagement.admin.network.response.*
 import com.app.schoolmanagement.students.network.SafeApiRequest
 import retrofit2.Call
 
@@ -46,7 +43,7 @@ class AdminRepository(val myApi: AdminApi) : SafeApiRequest() {
         userid: String,
         password:String,
         isinhcarge:Boolean
-    ): Call<AdminlLoginResponse> {
+    ): Call<StaffAddResponse> {
         if(isinhcarge)
         return myApi.addStaff(school_id, class_name, section_name, userid,password,1)
         else
