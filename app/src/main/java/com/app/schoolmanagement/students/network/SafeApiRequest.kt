@@ -1,6 +1,6 @@
 package com.app.schoolmanagement.students.network
 
-import com.app.schoolmanagement.utils.ApiException
+import com.app.schoolmanagement.students.utils.ApiException
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Response

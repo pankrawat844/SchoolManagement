@@ -12,9 +12,9 @@ import com.app.schoolmanagement.databinding.ActivityStudentLoginBinding
 import com.app.schoolmanagement.students.home.HomeActivity
 import com.app.schoolmanagement.students.network.response.Classes
 import com.app.schoolmanagement.students.network.response.Student
-import com.app.schoolmanagement.utils.hide
-import com.app.schoolmanagement.utils.show
-import com.app.schoolmanagement.utils.toast
+import com.app.schoolmanagement.students.utils.hide
+import com.app.schoolmanagement.students.utils.show
+import com.app.schoolmanagement.students.utils.toast
 import kotlinx.android.synthetic.main.activity_student_login.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
@@ -59,7 +59,9 @@ class StudentLoginActivity : AppCompatActivity(), StudentLoginListener, KodeinAw
            it.putString("name", student.name)
             it.putString("school_id", viewModel.school_id)
             it.putString("school_name", student.schoolName)
-           it.putString("roll_no", student.rollNo)
+            it.putString("class_id", student.class_id)
+
+            it.putString("roll_no", student.rollNo)
            it.putString("gender", student.gender)
            it.putString("address", student.address)
             it.commit()

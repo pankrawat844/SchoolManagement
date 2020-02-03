@@ -1,4 +1,4 @@
-package com.app.schoolmanagement.utils
+package com.app.schoolmanagement.students.utils
 
 import android.content.Context
 import android.view.GestureDetector

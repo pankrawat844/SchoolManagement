@@ -9,9 +9,9 @@ import com.app.schoolmanagement.R
 import com.app.schoolmanagement.databinding.ActivitySchoolLoginBinding
 import com.app.schoolmanagement.students.auth.studentsignup.StudentSignupActivity
 import com.app.schoolmanagement.students.room.entity.School
-import com.app.schoolmanagement.utils.hide
-import com.app.schoolmanagement.utils.show
-import com.app.schoolmanagement.utils.toast
+import com.app.schoolmanagement.students.utils.hide
+import com.app.schoolmanagement.students.utils.show
+import com.app.schoolmanagement.students.utils.toast
 import kotlinx.android.synthetic.main.activity_school_login.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein

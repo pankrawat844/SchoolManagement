@@ -4,8 +4,8 @@ import android.view.View
 import androidx.lifecycle.ViewModel
 import com.app.schoolmanagement.admin.network.response.AdminlLoginResponse
 import com.app.schoolmanagement.admin.repositories.AdminRepository
-import com.app.schoolmanagement.utils.ApiException
-import com.app.schoolmanagement.utils.NoInternetException
+import com.app.schoolmanagement.students.utils.ApiException
+import com.app.schoolmanagement.students.utils.NoInternetException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

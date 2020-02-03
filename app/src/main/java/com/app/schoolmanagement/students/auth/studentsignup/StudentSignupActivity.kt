@@ -17,9 +17,9 @@ import com.app.schoolmanagement.students.auth.studentlogin.StudentLoginListener
 import com.app.schoolmanagement.students.home.HomeActivity
 import com.app.schoolmanagement.students.network.response.Classes
 import com.app.schoolmanagement.students.network.response.Student
-import com.app.schoolmanagement.utils.hide
-import com.app.schoolmanagement.utils.show
-import com.app.schoolmanagement.utils.toast
+import com.app.schoolmanagement.students.utils.hide
+import com.app.schoolmanagement.students.utils.show
+import com.app.schoolmanagement.students.utils.toast
 import kotlinx.android.synthetic.main.activity_student_signup.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

@@ -14,10 +14,10 @@ import com.app.schoolmanagement.R
 import com.app.schoolmanagement.admin.network.response.Classes
 import com.app.schoolmanagement.admin.network.response.StaffList
 import com.app.schoolmanagement.databinding.ActivityStaffBinding
-import com.app.schoolmanagement.utils.RecyclerItemClickListenr
-import com.app.schoolmanagement.utils.hide
-import com.app.schoolmanagement.utils.show
-import com.app.schoolmanagement.utils.toast
+import com.app.schoolmanagement.students.utils.RecyclerItemClickListenr
+import com.app.schoolmanagement.students.utils.hide
+import com.app.schoolmanagement.students.utils.show
+import com.app.schoolmanagement.students.utils.toast
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
@@ -56,7 +56,7 @@ class StaffActivity : AppCompatActivity(), KodeinAware,StaffActivityListener {
                 bottomsheet_stafff?.state = BottomSheetBehavior.STATE_EXPANDED
                 bottomsheet_stafff?.isHideable = true
             }else
-                android.widget.Toast.makeText(this@StaffActivity, "Bottomsheet open", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@StaffActivity, "Bottomsheet open", Toast.LENGTH_SHORT).show()
         }
 //        buttonOk.setOnClickListener {
 //            viewModel
@@ -148,7 +148,8 @@ class StaffActivity : AppCompatActivity(), KodeinAware,StaffActivityListener {
         progress_bar.hide()
         toast(msg)
 
-        if (bottomsheet_stafff?.state == BottomSheetBehavior.STATE_EXPANDED) {
+        if (bottomsheet_stafff?.state == BottomSheetBehavior.STATE_EXPANDED)
+        {
             bottomsheet_stafff?.state = BottomSheetBehavior.STATE_HIDDEN
         }
     }
@@ -175,7 +176,7 @@ class StaffActivity : AppCompatActivity(), KodeinAware,StaffActivityListener {
     private fun bottomsheet_addstaff() {
         bottomsheet_stafff = BottomSheetBehavior.from(bottomsheet_staff)
         bottomsheet_stafff?.state = BottomSheetBehavior.STATE_HIDDEN
-        bottomsheet_stafff?.bottomSheetCallback =
+        bottomsheet_stafff?.addBottomSheetCallback(
             object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onSlide(p0: View, p1: Float) {
 
@@ -188,7 +189,7 @@ class StaffActivity : AppCompatActivity(), KodeinAware,StaffActivityListener {
             }
 
 
-            }
+            })
 
 
     }

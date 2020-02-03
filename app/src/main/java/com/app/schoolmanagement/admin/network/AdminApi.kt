@@ -1,8 +1,8 @@
 package com.app.schoolmanagement.admin.network
 
 import com.app.schoolmanagement.admin.network.response.*
-import com.app.schoolmanagement.utils.Constants
-import com.app.schoolmanagement.utils.NetworkConnectionInterceptor
+import com.app.schoolmanagement.students.utils.Constants
+import com.app.schoolmanagement.students.utils.NetworkConnectionInterceptor
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit

@@ -2,15 +2,21 @@ package com.app.schoolmanagement.students.home.ui.home
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.app.schoolmanagement.R
+import com.app.schoolmanagement.students.businfo.BusInfoActivity
+import com.app.schoolmanagement.students.feeinfo.FeeInfoActivity
+import com.app.schoolmanagement.students.leave.LeaveActivity
+import com.app.schoolmanagement.students.network.response.Timetable
 import com.app.schoolmanagement.students.repositories.StudentRepository
-import com.app.schoolmanagement.utils.ApiException
-import com.app.schoolmanagement.utils.NoInternetException
+import com.app.schoolmanagement.students.timetable.TimeTableActivity
+import com.app.schoolmanagement.students.utils.ApiException
+import com.app.schoolmanagement.students.utils.NoInternetException
 import kotlinx.android.synthetic.main.dialog_edit_profile.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -115,5 +121,32 @@ class HomeViewModel(val studentRepository: StudentRepository) : ViewModel() {
         builder.setView(dialogView)
         dialog = builder.create()
         dialog?.show()
+    }
+
+
+
+    fun ontimetableclick(view: View){
+        Intent(view.context,TimeTableActivity::class.java).also {
+            view.context.startActivity(it)
+        }
+    }
+
+
+    fun onbusinfoclick(view: View){
+        Intent(view.context,BusInfoActivity::class.java).also {
+            view.context.startActivity(it)
+        }
+    }
+
+    fun onleaveclick(view: View){
+        Intent(view.context,LeaveActivity::class.java).also {
+            view.context.startActivity(it)
+        }
+    }
+
+    fun onfeeinfoclick(view: View){
+        Intent(view.context,FeeInfoActivity::class.java).also {
+            view.context.startActivity(it)
+        }
     }
 }

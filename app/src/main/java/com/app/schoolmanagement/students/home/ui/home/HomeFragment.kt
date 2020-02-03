@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.app.schoolmanagement.R
 import com.app.schoolmanagement.databinding.FragmentHomeBinding
-import com.app.schoolmanagement.utils.toast
+import com.app.schoolmanagement.students.utils.toast
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance

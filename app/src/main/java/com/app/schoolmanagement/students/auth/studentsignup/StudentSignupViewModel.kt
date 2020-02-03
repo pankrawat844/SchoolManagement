@@ -5,8 +5,8 @@ import androidx.lifecycle.ViewModel
 import com.app.schoolmanagement.students.auth.studentlogin.StudentLoginListener
 import com.app.schoolmanagement.students.network.response.Classes
 import com.app.schoolmanagement.students.repositories.StudentSignupRepository
-import com.app.schoolmanagement.utils.ApiException
-import com.app.schoolmanagement.utils.NoInternetException
+import com.app.schoolmanagement.students.utils.ApiException
+import com.app.schoolmanagement.students.utils.NoInternetException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

@@ -12,7 +12,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme">
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
         <activity android:name=".admin.ui.staff.StaffActivity"></activity>
         <activity
             android:name=".admin.AdminActivity"
@@ -33,6 +43,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".students.timetable.TimeTableActivity" />
+        <activity android:name=".students.businfo.BusInfoActivity" />
+        <activity android:name=".students.feeinfo.FeeInfoActivity"/>
+        <activity android:name=".students.leave.LeaveActivity"/>
+
     </application>
 
 </manifest>

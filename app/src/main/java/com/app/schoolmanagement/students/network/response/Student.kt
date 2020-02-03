@@ -29,6 +29,8 @@ data class Student(
         @SerializedName("school_name")
         val schoolName: String?,
         @SerializedName("student_id")
-        val studentId: String?
+        val studentId: String?,
+        @SerializedName("class_id")
+        val class_id: String?
     )
 }

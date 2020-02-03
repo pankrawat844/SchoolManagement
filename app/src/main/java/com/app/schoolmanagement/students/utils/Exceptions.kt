@@ -1,4 +1,4 @@
-package com.app.schoolmanagement.utils
+package com.app.schoolmanagement.students.utils
 
 import java.io.IOException
 

@@ -13,9 +13,8 @@ import com.app.schoolmanagement.admin.network.response.AddClassResponse
 import com.app.schoolmanagement.admin.network.response.Classes
 import com.app.schoolmanagement.admin.repositories.AdminRepository
 import com.app.schoolmanagement.admin.ui.staff.StaffActivity
-import com.app.schoolmanagement.admin.ui.home.AdminHomeFragmentListener
-import com.app.schoolmanagement.utils.ApiException
-import com.app.schoolmanagement.utils.NoInternetException
+import com.app.schoolmanagement.students.utils.ApiException
+import com.app.schoolmanagement.students.utils.NoInternetException
 import kotlinx.android.synthetic.main.dialog_add_class.view.*
 import kotlinx.android.synthetic.main.dialog_edit_profile.view.buttonOk
 import kotlinx.coroutines.CoroutineScope
@@ -24,7 +23,6 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import org.json.JSONObject
 
 
 class AdminHomeViewModel(val adminRepository: AdminRepository) : ViewModel() {

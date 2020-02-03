@@ -11,9 +11,9 @@ import com.app.schoolmanagement.R
 import com.app.schoolmanagement.admin.AdminActivity
 import com.app.schoolmanagement.admin.network.response.AdminlLoginResponse
 import com.app.schoolmanagement.databinding.ActivityAdminLoginBinding
-import com.app.schoolmanagement.utils.hide
-import com.app.schoolmanagement.utils.show
-import com.app.schoolmanagement.utils.toast
+import com.app.schoolmanagement.students.utils.hide
+import com.app.schoolmanagement.students.utils.show
+import com.app.schoolmanagement.students.utils.toast
 import kotlinx.android.synthetic.main.activity_admin_login.*
 import kotlinx.android.synthetic.main.fragment_admin_home.logo
 import org.kodein.di.KodeinAware

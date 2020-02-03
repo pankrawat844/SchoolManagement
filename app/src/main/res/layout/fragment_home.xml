@@ -213,6 +213,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:onClick="@{viewmodel::ontimetableclick}"
                             android:orientation="vertical">
 
                             <ImageView
@@ -310,6 +311,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:onClick="@{viewmodel::onleaveclick}"
                             android:orientation="vertical">
 
                             <ImageView
@@ -475,6 +477,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:onClick="@{viewmodel::onbusinfoclick}"
                             android:orientation="vertical">
 
                             <ImageView
@@ -506,6 +509,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:onClick="@{viewmodel::onfeeinfoclick}"
                             android:orientation="vertical">
 
                             <ImageView

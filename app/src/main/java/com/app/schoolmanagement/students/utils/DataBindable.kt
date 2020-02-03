@@ -1,8 +1,7 @@
-package com.app.schoolmanagement.utils
+package com.app.schoolmanagement.students.utils
 
 import android.view.View
 import android.widget.AdapterView
-import android.widget.CheckBox
 import android.widget.Spinner
 import androidx.databinding.BindingAdapter
 import com.app.schoolmanagement.students.auth.studentsignup.StudentSignupViewModel
